@@ -33,6 +33,16 @@ void DriveSubsystem::robotInit() {
     // resetTracker(Position2d(Translation2d(), Rotation2d()));
 }
 
+void DriveSubsystem::autonInit() {
+
+}
+
+void DriveSubsystem::auton() {
+  m_odometry.Update(frc::Rotation2d(units::degree_t(getHeading())),
+                    units::meter_t(m_leftMaster.GetSelectedSensorPosition(0)),
+                    units::meter_t(m_rightMaster.GetSelectedSensorPosition(0)));
+}
+
 void DriveSubsystem::teleopInit() {
 	COREEtherDrive::setAB(m_etherAValue.Get(), m_etherBValue.Get());
 	COREEtherDrive::setQuickturn(m_etherQuickTurnValue.Get());
@@ -143,3 +153,16 @@ void DriveSubsystem::resetOdometry(Pose2d pose) {
 Pose2d DriveSubsystem::getPose() {
 	return m_odometry.GetPose();
 }
+
+double DriveSubsystem::getHeading() {
+	return std::remainder(m_gyro.GetAngle(), 360) * (kGyroReversed ? -1.0 : 1.0);
+}
+
+double DriveSubsystem::getTurnRate() {
+	return m_gyro.GetRate() * (kGyroReversed ? -1.0 : 1.0);
+}
+
+double DriveSubsystem::getAverageEncoderDistance() {
+	return m_leftMaster.GetSelectedSensorPosition(0) + m_rightMaster.GetSelectedSensorPosition(0) / 2.0;
+}
+

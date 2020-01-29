@@ -10,8 +10,7 @@
 #include <frc/DoubleSolenoid.h>
 #include <frc/geometry/Pose2d.h>
 #include <frc/geometry/Rotation2d.h>
-#include "WaypointFollower/WaypointFollower.h"
-#include "COREUtilities/CORETimer.h"
+#include <Constants.h>
 
 enum class DriveSide{LEFT = 1, RIGHT = 2, BOTH = 3};
 
@@ -21,6 +20,8 @@ public:
 	void robotInit() override;
 	void teleopInit() override;
 	void teleop() override;
+	void autonInit() override;
+	void auton();
 	void teleopEnd() override;
 	void preLoopTask() override;
 
@@ -34,7 +35,12 @@ public:
 	void resetEncoders();
 	void resetOdometry(Pose2d pose);
 	Pose2d getPose();
-	 m_odometry = Rotation2d(units::degree_t(GetHeading()));
+	double getHeading();
+	double getTurnRate();
+	void setMaxOutput(double maxOutput);
+	double getAverageEncoderDistance();
+
+	 m_odometry = Rotation2d(units::degree_t(getHeading()));
 	COREConstant<double> m_lookAhead, m_driveTurnkP;
 	COREVector path;
     TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
@@ -46,6 +52,6 @@ private:
 	bool m_highGear;
 	double m_wheelbase = 20.8;
 	double m_trackwidth = 25.881;
-	AHRS *m_gyro;
+	AHRS m_gyro;
     int count = 0;
 };
