@@ -8,6 +8,8 @@
 
 #include <frc/Compressor.h>
 #include <frc/DoubleSolenoid.h>
+#include <frc/geometry/Pose2d.h>
+#include <frc/geometry/Rotation2d.h>
 #include "WaypointFollower/WaypointFollower.h"
 #include "COREUtilities/CORETimer.h"
 
@@ -29,7 +31,10 @@ public:
 	void setMotorSpeed(double leftPercent, double rightPercent);
 	void fillCompressor();
 	void toggleGear();
-	AdaptivePursuit m_pursuit;
+	void resetEncoders();
+	void resetOdometry(Pose2d pose);
+	Pose2d getPose();
+	 m_odometry = Rotation2d(units::degree_t(GetHeading()));
 	COREConstant<double> m_lookAhead, m_driveTurnkP;
 	COREVector path;
     TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;

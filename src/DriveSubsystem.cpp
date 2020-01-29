@@ -3,7 +3,7 @@
 #include "Robot.h"
 
 DriveSubsystem::DriveSubsystem() :
-        m_pursuit(0, 0, .1, Path(), false, 0),
+		m_odometry(),
         m_lookAhead("Path Lookahead", 24.0),
 		m_driveTurnkP("Drive Turn P Value", .05),
 		m_leftMaster(LEFT_FRONT_PORT),
@@ -127,4 +127,19 @@ void DriveSubsystem::toggleGear() {
 		m_leftDriveShifter.Set(DoubleSolenoid::kReverse);
 		m_highGear = true;
 	}
+}
+
+void DriveSubsystem::resetEncoders() {
+	m_leftMaster.SetSelectedSensorPosition(0);
+	m_leftSlave.SetSelectedSensorPosition(0);
+	m_rightMaster.SetSelectedSensorPosition(0);
+	m_rightSlave.SetSelectedSensorPosition(0);
+}
+
+void DriveSubsystem::resetOdometry(Pose2d pose) {
+
+}
+
+Pose2d DriveSubsystem::getPose() {
+	return m_odometry.GetPose();
 }
