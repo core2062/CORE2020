@@ -1,7 +1,6 @@
 #pragma once
 
 #include <CORERobotLib.h>
-#include <iostream>
 
 using namespace CORE;
 
