@@ -3,7 +3,6 @@
 #include "Robot.h"
 
 DriveSubsystem::DriveSubsystem() :
-		m_odometry(),
         m_lookAhead("Path Lookahead", 24.0),
 		m_driveTurnkP("Drive Turn P Value", .05),
 		m_leftMaster(LEFT_FRONT_PORT),
@@ -27,11 +26,11 @@ DriveSubsystem::DriveSubsystem() :
 }
 
 void DriveSubsystem::robotInit() {
-    driverJoystick->registerAxis(CORE::COREJoystick::LEFT_STICK_Y);
-    driverJoystick->registerAxis(CORE::COREJoystick::RIGHT_STICK_X);
-	driverJoystick->registerButton(CORE::COREJoystick::RIGHT_TRIGGER);
+	// Registers joystick axis and buttons, does inital setup for talons
+	driverJoystick->RegisterAxis(CORE::COREJoystick::LEFT_STICK_Y);
+	driverJoystick->RegisterAxis(CORE::COREJoystick::RIGHT_STICK_X);
+	driverJoystick->RegisterButton(CORE::COREJoystick::RIGHT_TRIGGER);
     initTalons();
-    // resetTracker(Position2d(Translation2d(), Rotation2d()));
 }
 
 void DriveSubsystem::auton() {
@@ -41,27 +40,29 @@ void DriveSubsystem::auton() {
 }
 
 void DriveSubsystem::teleopInit() {
-	COREEtherDrive::setAB(m_etherAValue.Get(), m_etherBValue.Get());
-	COREEtherDrive::setQuickturn(m_etherQuickTurnValue.Get());
+	// Sets ether drive values, inits talons
+	COREEtherDrive::SetAB(m_etherAValue.Get(), m_etherBValue.Get());
+	COREEtherDrive::SetQuickturn(m_etherQuickTurnValue.Get());
 	initTalons();
 }
 
 void DriveSubsystem::teleop() {
-    double mag = -driverJoystick->getAxis(CORE::COREJoystick::JoystickAxis::LEFT_STICK_Y);
-	double rot = driverJoystick->getAxis(CORE::COREJoystick::JoystickAxis::RIGHT_STICK_X);
+	// Code for teleop. Sets motor speed based on the values for the joystick, runs compressor,
+	// toggles gears
+    double mag = -driverJoystick->GetAxis(CORE::COREJoystick::JoystickAxis::LEFT_STICK_Y);
+	double rot = driverJoystick->GetAxis(CORE::COREJoystick::JoystickAxis::RIGHT_STICK_X);
 
-	VelocityPair speeds = COREEtherDrive::calculate(mag, rot, .1);
+	VelocityPair speeds = COREEtherDrive::Calculate(mag, rot, .1);
 	setMotorSpeed(speeds.left, speeds.right);
 	SmartDashboard::PutNumber("Left side speed", speeds.left);
 	SmartDashboard::PutNumber("Right side speed", speeds.right);
 	SmartDashboard::PutNumber("Left side encoder", m_leftSlave.GetSelectedSensorPosition(0));
 	SmartDashboard::PutNumber("Right side encoder", m_rightMaster.GetSelectedSensorPosition(0));
 
-	if(driverJoystick->getRisingEdge(CORE::COREJoystick::JoystickButton::RIGHT_TRIGGER)) {
+	if(driverJoystick->GetRisingEdge(CORE::COREJoystick::JoystickButton::RIGHT_TRIGGER)) {
 		toggleGear();
 	}
 	fillCompressor();
-
 }
 
 void DriveSubsystem::setMotorSpeed(double speedInFraction, DriveSide whichSide) {
@@ -77,8 +78,8 @@ void DriveSubsystem::setMotorSpeed(double speedInFraction, DriveSide whichSide) 
 }
 
 void DriveSubsystem::setMotorSpeed(double leftPercent, double rightPercent) {
-	// Sets speed based on percent output desired 
-	setMotorSpeed(leftPercent, DriveSide::LEFT); //Might need to reverse this for comp robot
+	// Sets speed based on percent output desired
+	setMotorSpeed(leftPercent, DriveSide::LEFT);
 	setMotorSpeed(rightPercent, DriveSide::RIGHT);
 }
 
@@ -106,15 +107,7 @@ void DriveSubsystem::initTalons() {
 	m_rightSlave.SetInverted(true);
 }
 
-void DriveSubsystem::autonInitTask() {
-}
-
-void DriveSubsystem::preLoopTask() {
-}
-
-void DriveSubsystem::teleopEnd() {
-
-}
+void DriveSubsystem::teleopEnd() {}
 
 void DriveSubsystem::fillCompressor() {
 	// Code to run the compressor. Maybe should be moved to Robot?

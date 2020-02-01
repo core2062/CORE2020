@@ -22,7 +22,7 @@
 
 enum class DriveSide{LEFT = 1, RIGHT = 2, BOTH = 3};
 
-class DriveSubsystem : public CORESubsystem, public CORETask {
+class DriveSubsystem : public CORESubsystem {
 public:
 	DriveSubsystem();
 	void robotInit() override;
@@ -30,10 +30,8 @@ public:
 	void teleop() override;
 	void auton();
 	void teleopEnd() override;
-	void preLoopTask() override;
 
 	void initTalons();
-	void autonInitTask() override;
 
 	void setMotorSpeed(double speedInFraction, DriveSide whichSide);
 	void setMotorSpeed(double leftPercent, double rightPercent);
@@ -61,10 +59,11 @@ public:
 	DifferentialDriveOdometry m_odometry;
 	COREConstant<double> m_lookAhead, m_driveTurnkP;
 	COREVector path;
-    TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
-
 private:
     COREConstant<double> m_etherAValue, m_etherBValue, m_etherQuickTurnValue, m_ticksPerInch;
+    TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
+    DoubleSolenoid m_leftDriveShifter, m_rightDriveShifter;
+    bool m_highGear;
     Compressor compressor;
 	DoubleSolenoid m_leftDriveShifter, m_rightDriveShifter;
 	bool m_highGear;
