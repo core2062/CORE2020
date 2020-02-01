@@ -15,7 +15,6 @@
 #include <frc/kinematics/DifferentialDriveWheelSpeeds.h>
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
-#include <frc/controller/
 #include <Constants.h>
 
 #define WHEEL_CIRCUMFERENCE_METERS
@@ -53,10 +52,10 @@ public:
 	TalonSRX& getRightSlave();
 	TalonSRX& getLeftSlave();
 	void setVelocity(double leftVelocity, double rightVelocity);
-	kinematics::DifferentialDriveWheelSpeeds getWheelSpeeds();
+	DifferentialDriveWheelSpeeds getWheelSpeeds();
 	SpeedControllerGroup m_leftMotors{m_leftSlave, m_leftMaster};
 	SpeedControllerGroup m_rightMotors{m_rightSlave, m_leftMaster};
-	drive::DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
+	DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
 	void setMaxOutput(double maxOutput);
 
 	DifferentialDriveOdometry m_odometry;
@@ -71,6 +70,6 @@ private:
 	bool m_highGear;
 	double m_wheelbase = 20.8;
 	double m_trackwidth = 25.881;
-	AHRS m_gyro;
+	AHRS * m_gyro;
     int count = 0;
 };
