@@ -10,7 +10,16 @@
 #include <frc/DoubleSolenoid.h>
 #include <frc/geometry/Pose2d.h>
 #include <frc/geometry/Rotation2d.h>
+#include <frc/SpeedControllerGroup.h>
+#include <frc/drive/DifferentialDrive.h>
+#include <frc/kinematics/DifferentialDriveWheelSpeeds.h>
+#include <frc/kinematics/DifferentialDriveKinematics.h>
+#include <frc/kinematics/DifferentialDriveOdometry.h>
+#include <frc/controller/
 #include <Constants.h>
+
+#define WHEEL_CIRCUMFERENCE_METERS
+#define SENSOR_UNITS_PER_ROTATION 
 
 enum class DriveSide{LEFT = 1, RIGHT = 2, BOTH = 3};
 
@@ -20,7 +29,6 @@ public:
 	void robotInit() override;
 	void teleopInit() override;
 	void teleop() override;
-	void autonInit() override;
 	void auton();
 	void teleopEnd() override;
 	void preLoopTask() override;
@@ -39,8 +47,19 @@ public:
 	double getTurnRate();
 	void setMaxOutput(double maxOutput);
 	double getAverageEncoderDistance();
+	void tankDriveVolts(units::volt_t l, units::volt_t r);
+	TalonSRX& getRightMaster();
+	TalonSRX& getLeftMaster();
+	TalonSRX& getRightSlave();
+	TalonSRX& getLeftSlave();
+	void setVelocity(double leftVelocity, double rightVelocity);
+	kinematics::DifferentialDriveWheelSpeeds getWheelSpeeds();
+	SpeedControllerGroup m_leftMotors{m_leftSlave, m_leftMaster};
+	SpeedControllerGroup m_rightMotors{m_rightSlave, m_leftMaster};
+	drive::DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
+	void setMaxOutput(double maxOutput);
 
-	 m_odometry = Rotation2d(units::degree_t(getHeading()));
+	DifferentialDriveOdometry m_odometry;
 	COREConstant<double> m_lookAhead, m_driveTurnkP;
 	COREVector path;
     TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;

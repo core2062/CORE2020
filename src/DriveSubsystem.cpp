@@ -16,7 +16,8 @@ DriveSubsystem::DriveSubsystem() :
         m_ticksPerInch("Ticks Per Inch", (4 * 3.1415) / 1024),
         compressor(COMPRESSOR_PCM),
         m_leftDriveShifter(LEFT_DRIVE_SHIFTER_PCM, LEFT_DRIVE_SHIFTER_HIGH_GEAR_PORT, LEFT_DRIVE_SHIFTER_LOW_GEAR_PORT),
-        m_rightDriveShifter(RIGHT_DRIVE_SHIFTER_PCM, RIGHT_DRIVE_SHIFTER_HIGH_GEAR_PORT, RIGHT_DRIVE_SHIFTER_LOW_GEAR_PORT) {
+        m_rightDriveShifter(RIGHT_DRIVE_SHIFTER_PCM, RIGHT_DRIVE_SHIFTER_HIGH_GEAR_PORT, RIGHT_DRIVE_SHIFTER_LOW_GEAR_PORT),
+		m_odometry{frc::Rotation2d(units::degree_t(getHeading()))} {
 
     try {
         m_gyro = new AHRS(SPI::Port::kMXP);
@@ -31,10 +32,6 @@ void DriveSubsystem::robotInit() {
 	driverJoystick->registerButton(CORE::COREJoystick::RIGHT_TRIGGER);
     initTalons();
     // resetTracker(Position2d(Translation2d(), Rotation2d()));
-}
-
-void DriveSubsystem::autonInit() {
-
 }
 
 void DriveSubsystem::auton() {
@@ -146,16 +143,17 @@ void DriveSubsystem::resetEncoders() {
 	m_rightSlave.SetSelectedSensorPosition(0);
 }
 
-void DriveSubsystem::resetOdometry(Pose2d pose) {
+double DriveSubsystem::getHeading() {
+	return std::remainder(m_gyro.GetAngle(), 360) * (kGyroReversed ? -1.0 : 1.0);
+}
 
+void DriveSubsystem::resetOdometry(Pose2d pose) {
+	resetEncoders();
+	m_odometry.ResetPosition(pose, Rotation2d(units::degree_t(getHeading())));
 }
 
 Pose2d DriveSubsystem::getPose() {
 	return m_odometry.GetPose();
-}
-
-double DriveSubsystem::getHeading() {
-	return std::remainder(m_gyro.GetAngle(), 360) * (kGyroReversed ? -1.0 : 1.0);
 }
 
 double DriveSubsystem::getTurnRate() {
@@ -166,3 +164,39 @@ double DriveSubsystem::getAverageEncoderDistance() {
 	return m_leftMaster.GetSelectedSensorPosition(0) + m_rightMaster.GetSelectedSensorPosition(0) / 2.0;
 }
 
+TalonSRX& DriveSubsystem::getRightMaster() {
+	return m_rightMaster;
+}
+
+TalonSRX& DriveSubsystem::getRightSlave() {
+	return m_rightSlave;
+}
+
+TalonSRX& DriveSubsystem::getLeftMaster() {
+	return m_leftMaster;
+}
+
+TalonSRX& DriveSubsystem::getLeftSlave() {
+	return m_leftSlave;
+}
+
+
+void DriveSubsystem::tankDriveVolts(units::volt_t l, units::volt_t r) {
+
+}
+
+void DriveSubsystem::setVelocity(double leftVelocity, double rightVelocity) {
+	m_leftMaster.Set(ControlMode::Velocity, leftVelocity);
+	m_leftSlave.Set(ControlMode::Velocity, leftVelocity);
+	m_rightMaster.Set(ControlMode::Velocity, rightVelocity);
+	m_rightSlave.Set(ControlMode::Velocity, rightVelocity);
+}
+
+kinematics::DifferentialWheelSpeeds DriveSubsystem::getWheelSpeeds() {
+	  return {units::meters_per_second_t(m_leftMaster.),
+          units::meters_per_second_t(m_rightEncoder.GetRate())};
+}
+
+void DriveSubsystem::setMaxOutput(double maxOutput) {
+	m_drive.SetMaxOutput(maxOutput);
+}

@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <frc/XboxController.h>
+#include <frc/trajectory/Trajectory.h>
 #include <frc/controller/PIDController.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc2/command/Command.h>
@@ -17,7 +17,7 @@
 #include <frc2/command/RunCommand.h>
 
 #include "Constants.h"
-#include "subsystems/DriveSubsystem.h"
+#include "DriveSubsystem.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -31,21 +31,9 @@ class RobotContainer {
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
-
- private:
-  // The driver's controller
-  frc::XboxController m_driverController{OIConstants::kDriverControllerPort};
-
-  // The robot's subsystems and commands are defined here...
-
-  // The robot's subsystems
   DriveSubsystem m_drive;
-
-  frc2::InstantCommand m_driveHalfSpeed{[this] { m_drive.SetMaxOutput(0.5); },
-                                        {}};
-  frc2::InstantCommand m_driveFullSpeed{[this] { m_drive.SetMaxOutput(1); },
-                                        {}};
-
+ private:
+  static Trajectory loadTrajectory(String trajectoryName);
   // The chooser for the autonomous routines
   frc::SendableChooser<frc2::Command*> m_chooser;
 

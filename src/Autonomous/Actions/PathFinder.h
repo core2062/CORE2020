@@ -1,5 +1,6 @@
 #include <frc/Filesystem.h>
 #include <frc/trajectory/TrajectoryUtil.h>
+#include <frc/trajectory/Trajectory.h>
 #include <wpi/Path.h>
 #include <wpi/SmallString.h>
 

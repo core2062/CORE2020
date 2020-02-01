@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 #include "RobotContainer.h"
 
 #include <frc/controller/PIDController.h>
@@ -21,28 +14,7 @@
 #include "Constants.h"
 
 RobotContainer::RobotContainer() {
-  // Initialize all of your commands and subsystems here
 
-  // Configure the button bindings
-  ConfigureButtonBindings();
-
-  // Set up default drive command
-  m_drive.SetDefaultCommand(frc2::RunCommand(
-      [this] {
-        m_drive.ArcadeDrive(
-            m_driverController.GetY(frc::GenericHID::kLeftHand),
-            m_driverController.GetX(frc::GenericHID::kRightHand));
-      },
-      {&m_drive}));
-}
-
-void RobotContainer::ConfigureButtonBindings() {
-  // Configure your button bindings here
-
-  // While holding the shoulder button, drive at half speed
-  frc2::JoystickButton(&m_driverController, 6)
-      .WhenPressed(&m_driveHalfSpeed)
-      .WhenReleased(&m_driveFullSpeed);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
@@ -72,20 +44,20 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       config);
 
   frc2::RamseteCommand ramseteCommand(
-      exampleTrajectory, [this]() { return m_drive.GetPose(); },
+      exampleTrajectory, [this]() { return m_drive.getPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
                              AutoConstants::kRamseteZeta),
       frc::SimpleMotorFeedforward<units::meters>(
           DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
       DriveConstants::kDriveKinematics,
-      [this] { return m_drive.GetWheelSpeeds(); },
+      [this] { return m_drive.getWheelSpeeds(); },
       frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
       frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
-      [this](auto left, auto right) { m_drive.TankDriveVolts(left, right); },
+      [this](auto left, auto right) { m_drive.tankDriveVolts(left, right); },
       {&m_drive});
 
   // no auto
   return new frc2::SequentialCommandGroup(
       std::move(ramseteCommand),
-      frc2::InstantCommand([this] { m_drive.TankDriveVolts(0_V, 0_V); }, {}));
+      frc2::InstantCommand([this] { m_drive.tankDriveVolts(0_V, 0_V); }, {}));
 }
