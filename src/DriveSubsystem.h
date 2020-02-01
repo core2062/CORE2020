@@ -65,8 +65,6 @@ private:
     DoubleSolenoid m_leftDriveShifter, m_rightDriveShifter;
     bool m_highGear;
     Compressor compressor;
-	DoubleSolenoid m_leftDriveShifter, m_rightDriveShifter;
-	bool m_highGear;
 	double m_wheelbase = 20.8;
 	double m_trackwidth = 25.881;
 	AHRS * m_gyro;
