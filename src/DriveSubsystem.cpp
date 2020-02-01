@@ -3,7 +3,7 @@
 #include <Robot.h>
 
 DriveSubsystem::DriveSubsystem() :
-        m_lookAhead("Path Lookahead", 24.0),
+		m_odometry{frc::Rotation2d(units::degree_t(getHeading()))},
 		m_driveTurnkP("Drive Turn P Value", .05),
 		m_leftMaster(LEFT_FRONT_PORT),
 		m_rightMaster(RIGHT_FRONT_PORT),
@@ -14,8 +14,7 @@ DriveSubsystem::DriveSubsystem() :
 		m_etherQuickTurnValue("Ether Quick Turn Value", 1.0),
         m_ticksPerInch("Ticks Per Inch", (4 * 3.1415) / 1024),
         m_leftDriveShifter(LEFT_DRIVE_SHIFTER_PCM, LEFT_DRIVE_SHIFTER_HIGH_GEAR_PORT, LEFT_DRIVE_SHIFTER_LOW_GEAR_PORT),
-        m_rightDriveShifter(RIGHT_DRIVE_SHIFTER_PCM, RIGHT_DRIVE_SHIFTER_HIGH_GEAR_PORT, RIGHT_DRIVE_SHIFTER_LOW_GEAR_PORT),
-		m_odometry{frc::Rotation2d(units::degree_t(getHeading()))} {
+        m_rightDriveShifter(RIGHT_DRIVE_SHIFTER_PCM, RIGHT_DRIVE_SHIFTER_HIGH_GEAR_PORT, RIGHT_DRIVE_SHIFTER_LOW_GEAR_PORT) {
 
     try {
         m_gyro = new AHRS(SPI::Port::kMXP);

@@ -57,7 +57,7 @@ public:
 	void setMaxOutput(double maxOutput);
 
 	DifferentialDriveOdometry m_odometry;
-	COREConstant<double> m_lookAhead, m_driveTurnkP;
+	COREConstant<double> m_driveTurnkP;
 	COREVector path;
 private:
     TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
