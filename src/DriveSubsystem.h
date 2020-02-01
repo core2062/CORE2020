@@ -1,10 +1,10 @@
 #pragma once
 
 //#include "Robot.h"
-#include "ctre/Phoenix.h"
 #include <CORERobotLib.h>
-#include "AHRS.h"
-#include "COREFramework/COREScheduler.h"
+#include <ctre/Phoenix.h>
+#include <AHRS.h>
+#include <COREFramework/COREScheduler.h>
 
 #include <frc/Compressor.h>
 #include <frc/DoubleSolenoid.h>
@@ -60,8 +60,8 @@ public:
 	COREConstant<double> m_lookAhead, m_driveTurnkP;
 	COREVector path;
 private:
-    COREConstant<double> m_etherAValue, m_etherBValue, m_etherQuickTurnValue, m_ticksPerInch;
     TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
+    COREConstant<double> m_etherAValue, m_etherBValue, m_etherQuickTurnValue, m_ticksPerInch;
     DoubleSolenoid m_leftDriveShifter, m_rightDriveShifter;
     bool m_highGear;
     Compressor compressor;
