@@ -18,6 +18,7 @@
 
 #include "Constants.h"
 #include "DriveSubsystem.h"
+#include <string>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -33,7 +34,7 @@ class RobotContainer {
   frc2::Command* GetAutonomousCommand();
   DriveSubsystem m_drive;
  private:
-  static Trajectory loadTrajectory(String trajectoryName);
+  static Trajectory loadTrajectory(std::string trajectoryName);
   // The chooser for the autonomous routines
   frc::SendableChooser<frc2::Command*> m_chooser;
 

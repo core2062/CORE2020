@@ -45,16 +45,15 @@ public:
 	void setMaxOutput(double maxOutput);
 	double getAverageEncoderDistance();
 	void tankDriveVolts(units::volt_t l, units::volt_t r);
-	TalonSRX& getRightMaster();
-	TalonSRX& getLeftMaster();
-	TalonSRX& getRightSlave();
-	TalonSRX& getLeftSlave();
+	WPI_TalonSRX& getRightMaster();
+	WPI_TalonSRX& getLeftMaster();
+	WPI_TalonSRX& getRightSlave();
+	WPI_TalonSRX& getLeftSlave();
 	void setVelocity(double leftVelocity, double rightVelocity);
 	DifferentialDriveWheelSpeeds getWheelSpeeds();
 	SpeedControllerGroup m_leftMotors{m_leftSlave, m_leftMaster};
-	SpeedControllerGroup m_rightMotors{m_rightSlave, m_leftMaster};
+	SpeedControllerGroup m_rightMotors{m_rightSlave, m_rightMaster};
 	DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
-	void setMaxOutput(double maxOutput);
 
 	DifferentialDriveOdometry m_odometry;
 	COREConstant<double> m_driveTurnkP;

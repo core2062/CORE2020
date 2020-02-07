@@ -19,7 +19,7 @@ DriveSubsystem::DriveSubsystem() :
     try {
         m_gyro = new AHRS(SPI::Port::kMXP);
     } catch (std::exception ex) {
-        CORELog::logError("Error initializing gyro: " + string(ex.what()));
+        CORELog::LogError("Error initializing gyro: " + string(ex.what()));
     }
 }
 
@@ -135,7 +135,7 @@ void DriveSubsystem::resetEncoders() {
 }
 
 double DriveSubsystem::getHeading() {
-	return std::remainder(m_gyro->GetAngle(), 360) * (kGyroReversed ? -1.0 : 1.0);
+	return std::remainder(m_gyro->GetAngle(), 360) * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
 }
 
 void DriveSubsystem::resetOdometry(Pose2d pose) {
@@ -148,7 +148,7 @@ Pose2d DriveSubsystem::getPose() {
 }
 
 double DriveSubsystem::getTurnRate() {
-	return m_gyro->GetRate() * (kGyroReversed ? -1.0 : 1.0);
+	return m_gyro->GetRate() * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
 }
 
 double DriveSubsystem::getAverageEncoderDistance() {
