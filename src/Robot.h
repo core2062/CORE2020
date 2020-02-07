@@ -1,15 +1,19 @@
 #pragma once
 
 #include <string>
-
+#include <iostream>
+#include <frc/RobotBase.h>
 #include <frc/TimedRobot.h>
 #include <CORERobotLib.h>
-#include <DriveSubsystem.h>
-#include <LauncherSubsystem.h>
-#include <ClimberSubsystem.h>
-#include <IntakeSubsystem.h>
-#include <ConveyorSubsystem.h>
-#include <Auton.h>
+#include <COREFramework/COREScheduler.h>
+#include "Auton.h"
+#include "ClimberSubsystem.h"
+#include "ControlPanelSubsystem.h"
+#include "ConveyorSubsystem.h"
+#include "DriveSubsystem.h"
+#include "IntakeSubsystem.h"
+#include "LauncherSubsystem.h"
+#include "TurretSubsystem.h"
 
 /* Drive ports */
 #define RIGHT_FRONT_PORT 20
@@ -51,6 +55,10 @@ public:
 	void testInit() override;
 	static Robot * GetInstance();
 	DriveSubsystem driveSubsystem;
+	LauncherSubsystem launcherSubsystem;
+	IntakeSubsystem intakeSubsystem;
+	//TurretSubsystem turretSubsystem;
+
 	Autonomous controlledAutonomous;
 private:
 	static Robot * m_instance;

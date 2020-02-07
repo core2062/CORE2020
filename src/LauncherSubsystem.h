@@ -1,7 +1,7 @@
 #pragma once
 
 #include <CORERobotLib.h>
-#include <frc/WPILib.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <ctre/Phoenix.h>
 
 using namespace frc;

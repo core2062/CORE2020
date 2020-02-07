@@ -1,7 +1,9 @@
 #pragma once
 
+// #include <rev/ColorSensorV3.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <CORERobotLib.h>
-#include <Robot.h>
+#include "Robot.h"
 
 using namespace CORE;
 
@@ -12,4 +14,5 @@ public:
     void teleopInit() override;
     void teleop() override;
 private:
+    // rev::ColorSensorV3 m_colorSensor{i2cPort};
 };

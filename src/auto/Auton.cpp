@@ -1,6 +1,5 @@
 #include "Auton.h"
 #include <Robot.h>
-#include <frc/WPILib.h>
 
 Autonomous::Autonomous() : COREAuton("Test Auto") {}
 

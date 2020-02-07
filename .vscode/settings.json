@@ -76,6 +76,7 @@
     "cinttypes": "cpp",
     "complex": "cpp",
     "typeinfo": "cpp",
-    "valarray": "cpp"
+    "valarray": "cpp",
+    "*.inc": "cpp"
   }
 }

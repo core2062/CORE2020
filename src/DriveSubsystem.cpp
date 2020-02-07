@@ -1,6 +1,4 @@
-#include "ctre/Phoenix.h"
 #include "DriveSubsystem.h"
-#include "Robot.h"
 
 DriveSubsystem::DriveSubsystem() :
 		m_leftMaster(LEFT_FRONT_PORT),

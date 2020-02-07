@@ -2,7 +2,7 @@
 
 #include <ctre/Phoenix.h>
 #include <CORERobotLib.h>
-#include <frc/WPILib.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <networktables/NetworkTableInstance.h>
 #include <COREControl/COREPID.h>
 
