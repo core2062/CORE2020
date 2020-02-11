@@ -17,9 +17,6 @@
 #include <frc/kinematics/DifferentialDriveOdometry.h>
 #include <Constants.h>
 
-#define WHEEL_CIRCUMFERENCE_METERS
-#define SENSOR_UNITS_PER_ROTATION 
-
 enum class DriveSide{LEFT = 1, RIGHT = 2, BOTH = 3};
 
 class DriveSubsystem : public CORESubsystem {
@@ -59,7 +56,8 @@ public:
 	COREConstant<double> m_driveTurnkP;
 	COREVector path;
 private:
-    TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
+	double m_wheelCircumference = 0.4787787204;
+    WPI_TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
     COREConstant<double> m_etherAValue, m_etherBValue, m_etherQuickTurnValue, m_ticksPerInch;
     DoubleSolenoid m_leftDriveShifter, m_rightDriveShifter;
     bool m_highGear;

@@ -105,7 +105,9 @@ void DriveSubsystem::initTalons() {
 	m_rightSlave.SetInverted(true);
 }
 
-void DriveSubsystem::teleopEnd() {}
+void DriveSubsystem::teleopEnd() {
+	
+}
 
 void DriveSubsystem::fillCompressor() {
 	// Code to run the compressor. Maybe should be moved to Robot?
@@ -155,19 +157,19 @@ double DriveSubsystem::getAverageEncoderDistance() {
 	return m_leftMaster.GetSelectedSensorPosition(0) + m_rightMaster.GetSelectedSensorPosition(0) / 2.0;
 }
 
-TalonSRX& DriveSubsystem::getRightMaster() {
+WPI_TalonSRX& DriveSubsystem::getRightMaster() {
 	return m_rightMaster;
 }
 
-TalonSRX& DriveSubsystem::getRightSlave() {
+WPI_TalonSRX& DriveSubsystem::getRightSlave() {
 	return m_rightSlave;
 }
 
-TalonSRX& DriveSubsystem::getLeftMaster() {
+WPI_TalonSRX& DriveSubsystem::getLeftMaster() {
 	return m_leftMaster;
 }
 
-TalonSRX& DriveSubsystem::getLeftSlave() {
+WPI_TalonSRX& DriveSubsystem::getLeftSlave() {
 	return m_leftSlave;
 }
 
@@ -183,9 +185,9 @@ void DriveSubsystem::setVelocity(double leftVelocity, double rightVelocity) {
 	m_rightSlave.Set(ControlMode::Velocity, rightVelocity);
 }
 
-kinematics::DifferentialWheelSpeeds DriveSubsystem::getWheelSpeeds() {
-	  return {units::meters_per_second_t(m_leftMaster.),
-          units::meters_per_second_t(m_rightEncoder.GetRate())};
+frc::DifferentialDriveWheelSpeeds DriveSubsystem::getWheelSpeeds() {
+	  return {units::meters_per_second_t(m_leftMaster.GetSelectedSensorVelocity(0) * (10.0 / 4096) * m_wheelCircumference),
+        units::meters_per_second_t(m_rightMaster.GetSelectedSensorVelocity(0) * (10.0 / 4096) * m_wheelCircumference)};
 }
 
 void DriveSubsystem::setMaxOutput(double maxOutput) {
