@@ -1,3 +1,10 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 #include "RobotContainer.h"
 
 #include <frc/controller/PIDController.h>
@@ -22,13 +29,13 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
       frc::SimpleMotorFeedforward<units::meters>(
           DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
-      DriveConstants::kDriveKinematics, 10_V);
+      kDriveKinematics, 10_V);
 
   // Set up config for trajectory
   frc::TrajectoryConfig config(AutoConstants::kMaxSpeed,
                                AutoConstants::kMaxAcceleration);
   // Add kinematics to ensure max speed is actually obeyed
-  config.SetKinematics(DriveConstants::kDriveKinematics);
+  config.SetKinematics(kDriveKinematics);
   // Apply the voltage constraint
   config.AddConstraint(autoVoltageConstraint);
 
@@ -49,7 +56,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
                              AutoConstants::kRamseteZeta),
       frc::SimpleMotorFeedforward<units::meters>(
           DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
-      DriveConstants::kDriveKinematics,
+      kDriveKinematics,
       [this] { return m_drive.getWheelSpeeds(); },
       frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
       frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),

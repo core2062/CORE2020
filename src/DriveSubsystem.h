@@ -15,11 +15,12 @@
 #include <frc/kinematics/DifferentialDriveWheelSpeeds.h>
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
+#include <frc2/command/SubsystemBase.h>
 #include <Constants.h>
 
 enum class DriveSide{LEFT = 1, RIGHT = 2, BOTH = 3};
 
-class DriveSubsystem : public CORESubsystem {
+class DriveSubsystem : public CORESubsystem, public frc2::SubsystemBase {
 public:
 	DriveSubsystem();
 	void robotInit() override;
