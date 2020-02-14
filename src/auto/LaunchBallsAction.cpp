@@ -1,5 +1,4 @@
-#include "Robot.h"
-#include <LaunchBallsAction.h>
+#include "LaunchBallsAction.h"
 
 LaunchBallsAction::LaunchBallsAction(launchBallsAction requestedLaunchBallsAction) {
     m_launchBallsAction = requestedLaunchBallsAction;
@@ -22,5 +21,10 @@ CORE::COREAutonAction::actionStatus LaunchBallsAction::Action() {
         case LAUNCHER_OFF:
             // Robot::GetInstance()->launcherSubsystem.
             break;
+    return COREAutonAction::actionStatus::END;
     }
+}
+
+void LaunchBallsAction::ActionEnd() {
+
 }

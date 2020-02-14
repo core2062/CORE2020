@@ -1,7 +1,7 @@
 #pragma once
 
 #include <CORERobotLib.h>
-#include "Robot.h"
+#include "Config.h"
 
 using namespace CORE;
 

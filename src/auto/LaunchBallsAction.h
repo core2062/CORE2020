@@ -1,7 +1,8 @@
 #pragma once
 
 #include <CORERobotLib.h>
-#include <LauncherSubsystem.h>
+#include "LauncherSubsystem.h"
+#include "Robot.h"
 
 using namespace CORE;
 

@@ -1,12 +1,14 @@
 #pragma once
 
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <ctre/Phoenix.h>
 #include <CORERobotLib.h>
-#include <frc/smartdashboard/SmartDashboard.h>
 #include <networktables/NetworkTableInstance.h>
 #include <COREControl/COREPID.h>
+#include "Config.h"
 
 using namespace CORE;
+using namespace frc;
 
 class TurretSubsystem : public CORESubsystem {
 private:

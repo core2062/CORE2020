@@ -3,7 +3,7 @@
 #include <frc/DoubleSolenoid.h>
 #include <ctre/Phoenix.h>
 #include <CORERobotLib.h>
-#include "Robot.h"
+#include "Config.h"
 
 using namespace CORE;
 

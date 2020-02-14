@@ -7,7 +7,7 @@
 #include <CORERobotLib.h>
 #include <COREFramework/COREScheduler.h>
 #include <COREUtilities/CORETimer.h>
-#include "Robot.h"
+#include "Config.h"
 
 using namespace CORE;
 using namespace frc;

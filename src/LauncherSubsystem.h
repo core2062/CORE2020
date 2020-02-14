@@ -1,8 +1,9 @@
 #pragma once
 
-#include <CORERobotLib.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <ctre/Phoenix.h>
+#include <CORERobotLib.h>
+#include "Config.h"
 
 using namespace frc;
 
