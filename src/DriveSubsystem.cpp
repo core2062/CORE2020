@@ -11,8 +11,7 @@ DriveSubsystem::DriveSubsystem() :
 		m_rightSlave(RIGHT_BACK_PORT),
         m_leftDriveShifter(LEFT_DRIVE_SHIFTER_PCM, LEFT_DRIVE_SHIFTER_HIGH_GEAR_PORT, LEFT_DRIVE_SHIFTER_LOW_GEAR_PORT),
         m_rightDriveShifter(RIGHT_DRIVE_SHIFTER_PCM, RIGHT_DRIVE_SHIFTER_HIGH_GEAR_PORT, RIGHT_DRIVE_SHIFTER_LOW_GEAR_PORT),
-        compressor(COMPRESSOR_PCM)
-		 {
+		compressor(COMPRESSOR_PCM) {
 }
 
 void DriveSubsystem::robotInit() {

@@ -32,7 +32,6 @@ public:
 	IntakeSubsystem intakeSubsystem;
 	TurretSubsystem turretSubsystem;
 	ConveyorSubsystem conveyorSubsystem;
-	// Autonomous controlledAutonomous;
 
 private:
 	static Robot * m_instance;
