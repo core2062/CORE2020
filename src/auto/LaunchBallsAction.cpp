@@ -21,8 +21,8 @@ CORE::COREAutonAction::actionStatus LaunchBallsAction::Action() {
         case LAUNCHER_OFF:
             Robot::GetInstance()->launcherSubsystem.launcherOn(false);
             break;
-    return COREAutonAction::actionStatus::END;
     }
+    return COREAutonAction::actionStatus::END;
 } 
 
 void LaunchBallsAction::ActionEnd() {

@@ -20,8 +20,8 @@ CORE::COREAutonAction::actionStatus IntakePowerCellsAction::Action() {
         case STOP:
             Robot::GetInstance()->intakeSubsystem.SetIntake(0);
             break;
-    return COREAutonAction::actionStatus::END;
     }
+    return COREAutonAction::actionStatus::END;
 }
 
 void IntakePowerCellsAction::ActionEnd() {

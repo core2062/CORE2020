@@ -20,8 +20,8 @@ CORE::COREAutonAction::actionStatus DriveForwardAction::Action() {
         case STOP:
             Robot::GetInstance()->driveSubsystem.setMotorSpeed(0, DriveSide::BOTH);
             break;
-    return COREAutonAction::actionStatus::END;
     }
+    return COREAutonAction::actionStatus::END;
 }
 
 void DriveForwardAction::ActionEnd() {
