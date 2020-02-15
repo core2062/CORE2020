@@ -13,7 +13,8 @@ public:
     void robotInit() override;
     void teleopInit() override;
     void teleop() override;
+    void launcherOn(bool m_launcherOn);
 private:
-    TalonSRX m_topMotor, m_bottomMotor;
-    double m_topMotorSpeed, m_bottomMotorSpeed;
+    TalonSRX m_launcherMotor;
+    bool m_launcherOn;
 };
