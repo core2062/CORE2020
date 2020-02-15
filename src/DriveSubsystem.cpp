@@ -16,14 +16,15 @@ DriveSubsystem::DriveSubsystem() :
         m_leftDriveShifter(LEFT_DRIVE_SHIFTER_PCM, LEFT_DRIVE_SHIFTER_HIGH_GEAR_PORT, LEFT_DRIVE_SHIFTER_LOW_GEAR_PORT),
         m_rightDriveShifter(RIGHT_DRIVE_SHIFTER_PCM, RIGHT_DRIVE_SHIFTER_HIGH_GEAR_PORT, RIGHT_DRIVE_SHIFTER_LOW_GEAR_PORT) {
 
-    try {
-        m_gyro = new AHRS(SPI::Port::kMXP);
-    } catch (std::exception ex) {
-        CORELog::LogError("Error initializing gyro: " + string(ex.what()));
-    }
+    // try {
+    //     m_gyro = new AHRS(SPI::Port::kMXP);
+    // } catch (std::exception ex) {
+    //     CORELog::LogError("Error initializing gyro: " + string(ex.what()));
+    // }
 }
 
 void DriveSubsystem::robotInit() {
+	cout << "Drive Subsystem" << endl;
 	// Registers joystick axis and buttons, does inital setup for talons
 	driverJoystick->RegisterAxis(CORE::COREJoystick::LEFT_STICK_Y);
 	driverJoystick->RegisterAxis(CORE::COREJoystick::RIGHT_STICK_X);
@@ -137,7 +138,12 @@ void DriveSubsystem::resetEncoders() {
 }
 
 double DriveSubsystem::getHeading() {
-	return std::remainder(m_gyro->GetAngle(), 360) * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
+	try {
+		return std::remainder(m_gyro.GetAngle(), 360) * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
+	} catch (std::exception ex) {
+  		std::cout << "Gyro isn't working in get heading!" << endl;
+		return 0;
+	}
 }
 
 void DriveSubsystem::resetOdometry(Pose2d pose) {
@@ -150,7 +156,12 @@ Pose2d DriveSubsystem::getPose() {
 }
 
 double DriveSubsystem::getTurnRate() {
-	return m_gyro->GetRate() * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
+	try {
+		return m_gyro.GetRate() * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
+	} catch (std::exception ex) {
+    	std::cout << "Gyro isn't working in get turn rate!" << endl;
+		return 0;
+	}
 }
 
 double DriveSubsystem::getAverageEncoderDistance() {
@@ -175,6 +186,10 @@ WPI_TalonSRX& DriveSubsystem::getLeftSlave() {
 
 
 void DriveSubsystem::tankDriveVolts(units::volt_t l, units::volt_t r) {
+	m_leftMaster.SetVoltage(l);
+	m_leftSlave.SetVoltage(r);
+	m_rightMaster.SetVoltage(l);
+	m_rightSlave.SetVoltage(r);
 
 }
 

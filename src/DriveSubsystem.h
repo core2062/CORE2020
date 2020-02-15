@@ -12,11 +12,13 @@
 #include <frc/geometry/Rotation2d.h>
 #include <frc/SpeedControllerGroup.h>
 #include <frc/drive/DifferentialDrive.h>
+#include <frc/ADXRS450_Gyro.h>
 #include <frc/kinematics/DifferentialDriveWheelSpeeds.h>
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
 #include <frc2/command/SubsystemBase.h>
 #include <Constants.h>
+#include <iostream>
 
 enum class DriveSide{LEFT = 1, RIGHT = 2, BOTH = 3};
 
@@ -65,6 +67,7 @@ private:
     Compressor compressor;
 	double m_wheelbase = 20.8;
 	double m_trackwidth = 25.881;
-	AHRS * m_gyro;
+	// AHRS * m_gyro;
+	frc::ADXRS450_Gyro m_gyro;
     int count = 0;
 };
