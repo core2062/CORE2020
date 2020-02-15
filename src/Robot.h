@@ -6,7 +6,6 @@
 #include <frc/TimedRobot.h>
 #include <CORERobotLib.h>
 #include <COREFramework/COREScheduler.h>
-#include "Auton.h"
 #include "ClimberSubsystem.h"
 #include "ControlPanelSubsystem.h"
 #include "ConveyorSubsystem.h"
@@ -32,6 +31,7 @@ public:
 	LauncherSubsystem launcherSubsystem;
 	IntakeSubsystem intakeSubsystem;
 	TurretSubsystem turretSubsystem;
+	ConveyorSubsystem conveyorSubsystem;
 	// Autonomous controlledAutonomous;
 
 private:

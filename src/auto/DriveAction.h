@@ -6,18 +6,17 @@
 
 using namespace CORE;
 
-enum driveForwardAction {
+enum driveAction {
     FORWARD,
-    BACKWARD,
-    STOP
+    BACKWARD
 };
 
-class DriveForwardAction : public COREAutonAction {
+class DriveAction : public COREAutonAction {
 public:
-    DriveForwardAction(driveForwardAction requestedDriveForwardAction);
+    DriveAction(driveAction requestedDriveAction);
     void ActionInit() override;
     CORE::COREAutonAction::actionStatus Action() override;
     void ActionEnd() override;
 private:
-    driveForwardAction m_driveForwardAction;
+    driveAction m_driveAction;
 };
