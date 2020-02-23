@@ -40,6 +40,7 @@ public:
 	void resetEncoders();
 	void resetOdometry(Pose2d pose);
 	Pose2d getPose();
+	double getStartHeading();
 	double getHeading();
 	double getTurnRate();
 	void setMaxOutput(double maxOutput);
@@ -67,7 +68,6 @@ private:
     Compressor compressor;
 	double m_wheelbase = 20.8;
 	double m_trackwidth = 25.881;
-	// AHRS * m_gyro;
-	frc::ADXRS450_Gyro m_gyro;
+	AHRS * m_gyro;
     int count = 0;
 };
