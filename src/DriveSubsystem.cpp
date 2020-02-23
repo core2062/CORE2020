@@ -193,12 +193,9 @@ WPI_TalonSRX& DriveSubsystem::getLeftSlave() {
 
 
 void DriveSubsystem::tankDriveVolts(units::volt_t l, units::volt_t r) {
-	m_leftMaster.SetVoltage(l);
-	m_leftSlave.SetVoltage(r);
-	m_rightMaster.SetVoltage(l);
-	m_rightSlave.SetVoltage(r);
+	m_leftMotors.SetVoltage(l);
+	m_rightMotors.SetVoltage(r);
 	m_drive.Feed();
-
 }
 
 void DriveSubsystem::setVelocity(double leftVelocity, double rightVelocity) {

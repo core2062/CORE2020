@@ -13,6 +13,8 @@
 #include <Autonomous/Auton.h>
 #include <frc/trajectory/TrajectoryUtil.h>
 #include <wpi/Path.h>
+#include <frc2/command/Command.h>
+#include <RobotContainer.h>
 #include <wpi/SmallString.h>
 #include <frc/Filesystem.h>
 #include <iostream>
@@ -50,6 +52,7 @@ using namespace std;
 class Robot : public CORERobot {
 public: 
  	Robot();
+	void AutonomousInit() override;
 	void robotInit() override;
     void teleopInit() override;
     void teleop() override;
@@ -57,7 +60,9 @@ public:
 	void testInit() override;
 	static Robot * GetInstance();
 	DriveSubsystem driveSubsystem;
+	RobotContainer m_container;
 	// Autonomous controlledAutonomous;
 private:
+  	frc2::Command* m_autonomousCommand = nullptr;
 	static Robot * m_instance;
 };

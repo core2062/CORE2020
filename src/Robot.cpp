@@ -19,6 +19,15 @@ void Robot::robotInit() {
 
 }
 
+void Robot::AutonomousInit() {
+	CORERobot::AutonomousInit();
+	m_autonomousCommand = m_container.GetAutonomousCommand();
+
+	if (m_autonomousCommand != nullptr) {
+    	m_autonomousCommand->Schedule();
+	}
+}
+
 void Robot::teleopInit() {
     
 }
