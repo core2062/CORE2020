@@ -209,8 +209,10 @@ void DriveSubsystem::setVelocity(double leftVelocity, double rightVelocity) {
 }
 
 frc::DifferentialDriveWheelSpeeds DriveSubsystem::getWheelSpeeds() {
-	  return {units::meters_per_second_t(m_leftMaster.GetSelectedSensorVelocity(0) * (10.0 / 4096) * m_wheelCircumference),
-        units::meters_per_second_t(m_rightMaster.GetSelectedSensorVelocity(0) * (10.0 / 4096) * m_wheelCircumference)};
+	double right = m_rightMaster.GetSelectedSensorVelocity(0) * (10.0 / 4096) * m_wheelCircumference;
+	double left = m_leftMaster.GetSelectedSensorVelocity(0) * (10.0 / 4096) * m_wheelCircumference;
+	  return {units::meters_per_second_t(left),
+        units::meters_per_second_t(right)};
 }
 
 void DriveSubsystem::setMaxOutput(double maxOutput) {

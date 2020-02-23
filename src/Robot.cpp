@@ -11,6 +11,11 @@ void Robot::teleop() {
 }
 
 void Robot::robotInit() {
+	wpi::SmallString<64> deployDirectory;
+    frc::filesystem::GetDeployDirectory(deployDirectory);
+    wpi::sys::path::append(deployDirectory, "paths");
+    wpi::sys::path::append(deployDirectory, "example.wpilib.json");
+    frc::Trajectory trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory);
 
 }
 

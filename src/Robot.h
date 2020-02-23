@@ -11,13 +11,17 @@
 #include <ConveyorSubsystem.h>
 #include <COREFramework/COREScheduler.h>
 #include <Autonomous/Auton.h>
+#include <frc/trajectory/TrajectoryUtil.h>
+#include <wpi/Path.h>
+#include <wpi/SmallString.h>
+#include <frc/Filesystem.h>
 #include <iostream>
 
 /* Drive ports */
-#define RIGHT_FRONT_PORT 20
-#define RIGHT_BACK_PORT 1
-#define LEFT_FRONT_PORT 19
-#define LEFT_BACK_PORT 32
+#define LEFT_FRONT_PORT 11
+#define LEFT_BACK_PORT 10
+#define RIGHT_FRONT_PORT 12
+#define RIGHT_BACK_PORT 13
 #define INTAKE_PORT 14
 #define CONVEYOR_1_PORT 15
 #define CONVEYOR_2_PORT 16
@@ -53,7 +57,7 @@ public:
 	void testInit() override;
 	static Robot * GetInstance();
 	DriveSubsystem driveSubsystem;
-	Autonomous controlledAutonomous;
+	// Autonomous controlledAutonomous;
 private:
 	static Robot * m_instance;
 };

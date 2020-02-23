@@ -1,13 +1,15 @@
-#include <frc/Filesystem.h>
-#include <frc/trajectory/TrajectoryUtil.h>
-#include <frc/trajectory/Trajectory.h>
-#include <wpi/Path.h>
-#include <wpi/SmallString.h>
 
-wpi::SmallString<64> deployDirectory;
-frc::filesystem::GetDeployDirectory(deployDirectory);
-wpi::sys::path::append(deployDirectory, "paths");
-wpi::sys::path::append(deployDirectory, "YourPath.wpilib.json");
+#pragma once
 
-frc::Trajectory trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory);
+#include "CORERobotLib.h"
 
+using namespace CORE;
+
+class PathFinderAction : public COREAutonAction {
+public:
+    explicit PathFinderAction();
+    void ActionInit() override;
+    actionStatus Action() override;
+    void ActionEnd() override;
+private:
+};

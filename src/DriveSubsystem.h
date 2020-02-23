@@ -52,16 +52,16 @@ public:
 	WPI_TalonSRX& getLeftSlave();
 	void setVelocity(double leftVelocity, double rightVelocity);
 	DifferentialDriveWheelSpeeds getWheelSpeeds();
-	SpeedControllerGroup m_leftMotors{m_leftSlave, m_leftMaster};
-	SpeedControllerGroup m_rightMotors{m_rightSlave, m_rightMaster};
-	DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
 
 	DifferentialDriveOdometry m_odometry;
 	COREConstant<double> m_driveTurnkP;
 	COREVector path;
 private:
 	double m_wheelCircumference = 0.4787787204;
-    WPI_TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
+	WPI_TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
+	SpeedControllerGroup m_leftMotors{m_leftSlave, m_leftMaster};
+	SpeedControllerGroup m_rightMotors{m_rightSlave, m_rightMaster};
+	DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
     COREConstant<double> m_etherAValue, m_etherBValue, m_etherQuickTurnValue, m_ticksPerInch;
     DoubleSolenoid m_leftDriveShifter, m_rightDriveShifter;
     bool m_highGear;
