@@ -1,17 +1,16 @@
-// #pragma once
+#pragma once
 
-// #include <string>
-// #include <CORERobotLib.h>
-// #include <AutonActionTest.h>
+#include <string>
+#include <CORERobotLib.h>
+#include <Autonomous/Actions/PathFinder.h>
 
-// using namespace CORE;
-// using namespace std;
+using namespace CORE;
+using namespace std;
 
-// class Autonomous: public COREAuton {
-// public:
-//     Autonomous();
-//     void AddNodes() override;
-// private:
-//     Node * autonNode1;
-//     Node * autonNode2;
-// };
+class Autonomous: public COREAuton {
+public:
+    Autonomous();
+    void AddNodes() override;
+private:
+    Node * m_drivePath;
+};

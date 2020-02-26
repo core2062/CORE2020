@@ -19,13 +19,8 @@ void Robot::robotInit() {
 
 }
 
-void Robot::AutonomousInit() {
-	CORERobot::AutonomousInit();
-	m_autonomousCommand = m_container.GetAutonomousCommand();
-
-	if (m_autonomousCommand != nullptr) {
-    	m_autonomousCommand->Schedule();
-	}
+void Robot::RobotPeriodic() {
+    frc2::CommandScheduler::GetInstance().Run();
 }
 
 void Robot::teleopInit() {

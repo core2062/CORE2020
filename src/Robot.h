@@ -4,6 +4,7 @@
 
 #include <frc/TimedRobot.h>
 #include <CORERobotLib.h>
+#include <frc2/command/CommandScheduler.h>
 #include <DriveSubsystem.h>
 #include <LauncherSubsystem.h>
 #include <ClimberSubsystem.h>
@@ -52,16 +53,16 @@ using namespace std;
 class Robot : public CORERobot {
 public: 
  	Robot();
-	void AutonomousInit() override;
+	void RobotPeriodic() override;
 	void robotInit() override;
     void teleopInit() override;
     void teleop() override;
 	void test() override;
 	void testInit() override;
 	static Robot * GetInstance();
-	DriveSubsystem driveSubsystem;
+	DriveSubsystem m_driveSubsystem;
 	RobotContainer m_container;
-	// Autonomous controlledAutonomous;
+	Autonomous driveAuto;
 private:
   	frc2::Command* m_autonomousCommand = nullptr;
 	static Robot * m_instance;
