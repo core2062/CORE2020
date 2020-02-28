@@ -39,7 +39,7 @@ void DriveSubsystem::teleop() {
 	setMotorSpeed(speeds.left, speeds.right);
 	SmartDashboard::PutNumber("Left side speed", speeds.left);
 	SmartDashboard::PutNumber("Right side speed", speeds.right);
-	SmartDashboard::PutNumber("Left side encoder", m_leftSlave.GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("Left side encoder", m_leftMaster.GetSelectedSensorPosition(0));
 	SmartDashboard::PutNumber("Right side encoder", m_rightMaster.GetSelectedSensorPosition(0));
 
 	if(driverJoystick->GetRisingEdge(CORE::COREJoystick::JoystickButton::RIGHT_TRIGGER)) {
@@ -81,7 +81,7 @@ void DriveSubsystem::initTalons() {
     m_rightMaster.ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative, 0, 0);
 
 	m_leftSlave.SetSensorPhase(false);
-    m_rightMaster.SetSensorPhase(true);
+    m_rightMaster.SetSensorPhase(false);
 
 	// Motor Inversion
 	m_leftMaster.SetInverted(false);
