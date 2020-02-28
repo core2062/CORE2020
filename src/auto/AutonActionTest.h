@@ -17,4 +17,5 @@ public:
     void AddNodes() override;
 private:
     Node * testNode;
+    Node * testNode2;
 };
