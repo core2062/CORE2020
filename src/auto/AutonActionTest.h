@@ -6,6 +6,7 @@
 #include "IntakePowerCellsAction.h"
 #include "LaunchBallsAction.h"
 #include "ConveyorAction.h"
+#include "DelayAction.h"
 // #include "AutonActionTest.h"
 
 using namespace CORE;
@@ -17,5 +18,6 @@ public:
     void AddNodes() override;
 private:
     Node * testNode;
+    node * delaynode;
     Node * testNode2;
 };
