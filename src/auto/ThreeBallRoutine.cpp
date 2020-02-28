@@ -3,8 +3,12 @@
 ThreeBallRoutine::ThreeBallRoutine() : COREAuton("Three Ball Routine") {}
 
 void ThreeBallRoutine::AddNodes() {
-    conveyorOnNode = new Node(5, new ());
-    autonNode2 = new Node(5, new AutonomousAction2());
-    AddFirstNode(autonNode1);
-    autonNode1->AddNext(autonNode2);
+    delayNode = new Node(5, new DelayAction());
+    launcherOnNode = new Node(5, new LaunchBallsAction(LAUNCHER_ON));
+    conveyorOnNode = new Node(5, new ConveyorAction(CONVEYOR_ON));
+    driveNode = new Node(5, new DriveAction(FORWARD));
+    AddFirstNode(delayNode);
+    delayNode->AddNext(launcherOnNode);
+    launcherOnNode->AddNext(conveyorOnNode);
+    conveyorOnNode->AddNext(driveNode);
 }

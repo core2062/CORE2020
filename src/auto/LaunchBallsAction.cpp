@@ -9,13 +9,7 @@ void LaunchBallsAction::ActionInit() {
 
 CORE::COREAutonAction::actionStatus LaunchBallsAction::Action() {
     switch(m_launchBallsAction) {
-        case LAUNCH_LOCATION_ONE:
-            Robot::GetInstance()->launcherSubsystem.launcherOn(true);
-            break;
-        case LAUNCH_LOCATION_TWO:
-            Robot::GetInstance()->launcherSubsystem.launcherOn(true);
-            break;
-        case LAUNCH_LOCATION_THREE:
+        case LAUNCHER_ON:
             Robot::GetInstance()->launcherSubsystem.launcherOn(true);
             break;
         case LAUNCHER_OFF:

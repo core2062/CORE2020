@@ -6,17 +6,12 @@
 
 using namespace CORE;
 
-enum launchBallsAction {
-    LAUNCHER_ON,
-    LAUNCHER_OFF
-};
-
-class LaunchBallsAction : public COREAutonAction {
+class DelayAction : public COREAutonAction {
 public:
-    LaunchBallsAction(launchBallsAction requestedLaunchBallsAction);
+    DelayAction();
     void ActionInit() override;
     CORE::COREAutonAction::actionStatus Action() override;
     void ActionEnd() override;
 private:
-    launchBallsAction m_launchBallsAction;
+
 };

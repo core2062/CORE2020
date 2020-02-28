@@ -2,22 +2,19 @@
 
 #include <string>
 #include <CORERobotLib.h>
+#include "DriveAction.h"
+#include "IntakePowerCellsAction.h"
 #include "LaunchBallsAction.h"
 #include "ConveyorAction.h"
-#include "DriveAction.h"
-#include "DelayAction.h"
 // #include "AutonActionTest.h"
 
 using namespace CORE;
 using namespace std;
 
-class ThreeBallRoutine: public COREAuton {
+class TestRoutine: public COREAuton {
 public:
-    ThreeBallRoutine();
+    TestRoutine();
     void AddNodes() override;
 private:
-    Node * delayNode;
-    Node * launcherOnNode;
-    Node * conveyorOnNode;
-    Node * driveNode;
+    Node * testNode;
 };
