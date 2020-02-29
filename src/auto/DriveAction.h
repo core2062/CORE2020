@@ -19,4 +19,6 @@ public:
     void ActionEnd() override;
 private:
     driveAction m_driveAction;
+    double m_encoderStartUpPosition;
+    COREConstant<double> m_distAutonMoveEncoderTicks;
 };

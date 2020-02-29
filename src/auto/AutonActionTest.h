@@ -18,6 +18,6 @@ public:
     void AddNodes() override;
 private:
     Node * testNode;
-    node * delaynode;
+    Node * delayNode;
     Node * testNode2;
 };
