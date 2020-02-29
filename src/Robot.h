@@ -13,12 +13,14 @@
 #include <COREFramework/COREScheduler.h>
 #include <Autonomous/Auton.h>
 #include <frc/trajectory/TrajectoryUtil.h>
+#include <frc/DriverStation.h>
 #include <wpi/Path.h>
 #include <frc2/command/Command.h>
 #include <RobotContainer.h>
 #include <wpi/SmallString.h>
 #include <frc/Filesystem.h>
 #include <iostream>
+#include <COREUtilities/COREDriverstation.h>
 
 /* Drive ports */
 #define LEFT_FRONT_PORT 11
@@ -54,6 +56,7 @@ class Robot : public CORERobot {
 public: 
  	Robot();
 	void RobotPeriodic() override;
+	void TeleopPeriodic() override;
 	void robotInit() override;
     void teleopInit() override;
     void teleop() override;

@@ -6,10 +6,6 @@ Robot::Robot() {
 	m_instance = this;
 }
 
-void Robot::teleop() {
-
-}
-
 void Robot::robotInit() {
 	wpi::SmallString<64> deployDirectory;
     frc::filesystem::GetDeployDirectory(deployDirectory);
@@ -23,12 +19,22 @@ void Robot::RobotPeriodic() {
     frc2::CommandScheduler::GetInstance().Run();
 }
 
+void Robot::TeleopPeriodic() {
+    std::cout << "running teleop periodic" << endl;
+    m_driveSubsystem.teleop();
+}
+
 void Robot::teleopInit() {
     
 }
 
 void Robot::test() {
 
+}
+
+void Robot::teleop() {
+    std::cout << "running teleop" << endl;
+    m_driveSubsystem.teleop();
 }
 
 void Robot::testInit() {

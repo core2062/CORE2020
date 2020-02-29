@@ -27,12 +27,6 @@ void DriveSubsystem::robotInit() {
     initTalons();
 }
 
-void DriveSubsystem::auton() { // Need to get the units in terms of meters instead of ticks 
-  m_odometry.Update(frc::Rotation2d(units::degree_t(getHeading())),
-                    units::meter_t(m_leftMaster.GetSelectedSensorPosition(0)),
-                    units::meter_t(m_rightMaster.GetSelectedSensorPosition(0)));
-}
-
 void DriveSubsystem::teleopInit() {
 	// Sets ether drive values, inits talons
 	COREEtherDrive::SetAB(m_etherAValue.Get(), m_etherBValue.Get());
@@ -40,11 +34,26 @@ void DriveSubsystem::teleopInit() {
 	initTalons();
 }
 
+void DriveSubsystem::auton() {
+	m_odometry.Update(frc::Rotation2d(units::degree_t(getHeading())),
+    units::meter_t(m_leftMaster.GetSelectedSensorPosition(0)),
+	units::meter_t(m_rightMaster.GetSelectedSensorPosition(0)));
+}
+
+void DriveSubsystem::Periodic() {
+  m_odometry.Update(frc::Rotation2d(units::degree_t(getHeading())),
+                    units::meter_t(m_leftMaster.GetSelectedSensorPosition(0)),
+                    units::meter_t(m_rightMaster.GetSelectedSensorPosition(0)));
+}
+
 void DriveSubsystem::teleop() {
 	// Code for teleop. Sets motor speed based on the values for the joystick, runs compressor,
 	// toggles gears
     double mag = -driverJoystick->GetAxis(CORE::COREJoystick::JoystickAxis::LEFT_STICK_Y);
+	SmartDashboard::PutNumber("mag", mag);
+	std::cout << "mag" << endl;
 	double rot = driverJoystick->GetAxis(CORE::COREJoystick::JoystickAxis::RIGHT_STICK_X);
+	SmartDashboard::PutNumber("rot", rot);
 
 	VelocityPair speeds = COREEtherDrive::Calculate(mag, rot, .1);
 	setMotorSpeed(speeds.left, speeds.right);

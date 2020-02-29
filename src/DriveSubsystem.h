@@ -28,9 +28,9 @@ public:
 	void robotInit() override;
 	void teleopInit() override;
 	void teleop() override;
-	void auton();
+	void Periodic() override;
 	void teleopEnd() override;
-
+	void auton();
 	void initTalons();
 
 	void setMotorSpeed(double speedInFraction, DriveSide whichSide);

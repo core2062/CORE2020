@@ -20,10 +20,13 @@ RobotContainer::RobotContainer() {
   // Set up default drive command
   m_drive.SetDefaultCommand(frc2::RunCommand(
       [this] {
-        m_drive.driverJoystick->GetAxis(CORE::COREJoystick::JoystickAxis::LEFT_STICK_Y);
-        m_drive.driverJoystick->GetAxis(CORE::COREJoystick::JoystickAxis::RIGHT_STICK_X);
+        m_drive.teleop();
       },
       {&m_drive}));
+}
+
+frc2::Command* RobotContainer::GetTeleopDriveCommand() {
+    m_drive.teleop();
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

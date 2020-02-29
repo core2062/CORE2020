@@ -60,7 +60,7 @@ model {
                     include '**/*.cpp', '**/*.cc'
                 }
                 exportedHeaders {
-                    srcDir 'src'x
+                    srcDir 'src'
                     srcDirs '../CORERobotLib/src' 
                     srcDir "../CORERobotLib/3rdparty/json/src/"
                     if (includeSrcInIncludeRoot) {
