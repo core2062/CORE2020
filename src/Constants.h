@@ -44,7 +44,3 @@ constexpr auto kMaxAcceleration = 3_mps_sq;
 constexpr double kRamseteB = 2;
 constexpr double kRamseteZeta = 0.7;
 }  // namespace AutoConstants
-
-namespace OIConstants {
-constexpr int kDriverControllerPort = 1;
-}  // namespace OIConstants

@@ -17,6 +17,7 @@
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
 #include <frc2/command/SubsystemBase.h>
+#include <frc/XboxController.h>
 #include <Constants.h>
 #include <iostream>
 
@@ -57,6 +58,7 @@ public:
 	COREConstant<double> m_driveTurnkP;
 	COREVector path;
 private:
+	XboxController m_controller{0};
 	double m_wheelCircumference = 0.4787787204;
 	WPI_TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
 	SpeedControllerGroup m_leftMotors{m_leftSlave, m_leftMaster};
