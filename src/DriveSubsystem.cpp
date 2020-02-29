@@ -20,6 +20,7 @@ DriveSubsystem::DriveSubsystem() :
 
 void DriveSubsystem::robotInit() {
 	cout << "Drive Subsystem" << endl;
+	cout << "joysticks are being registered" << endl;
 	// Registers joystick axis and buttons, does inital setup for talons
 	driverJoystick->RegisterAxis(CORE::COREJoystick::LEFT_STICK_Y);
 	driverJoystick->RegisterAxis(CORE::COREJoystick::RIGHT_STICK_X);
@@ -49,7 +50,7 @@ void DriveSubsystem::Periodic() {
 void DriveSubsystem::teleop() {
 	// Code for teleop. Sets motor speed based on the values for the joystick, runs compressor,
 	// toggles gears
-    double mag = -m_controller.GetY(frc::GenericHID::kLeftHand);
+	double mag = -m_controller.GetY(frc::GenericHID::kLeftHand);
 	SmartDashboard::PutNumber("mag", mag);
 	std::cout << mag << endl;
 	double rot = m_controller.GetX(frc::GenericHID::kRightHand);
