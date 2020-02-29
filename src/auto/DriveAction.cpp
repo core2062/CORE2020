@@ -19,11 +19,17 @@ CORE::COREAutonAction::actionStatus DriveAction::Action() {
             // Robot::GetInstance()->driveSubsystem.setMotorSpeed(0.5, DriveSide::BOTH);
             if(encoderValue < m_distAutonMoveEncoderTicks.Get() + m_encoderStartUpPosition){
                 driveSubsystem->setMotorSpeed(0.5, DriveSide::BOTH);
+                return COREAutonAction::actionStatus::CONTINUE;
+            } else{
+                driveSubsystem->setMotorSpeed(0.0, DriveSide::BOTH);
             }
             break;
         case BACKWARD:
-            if(encoderValue < m_distAutonMoveEncoderTicks.Get() + m_encoderStartUpPosition){
+            if(encoderValue > m_encoderStartUpPosition - m_distAutonMoveEncoderTicks.Get()){
                 driveSubsystem->setMotorSpeed(-0.5, DriveSide::BOTH);
+                return COREAutonAction::actionStatus::CONTINUE;
+            } else{
+                driveSubsystem->setMotorSpeed(0.0, DriveSide::BOTH);
             }
             break;
     }
