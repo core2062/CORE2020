@@ -7,13 +7,14 @@ ConveyorAction::ConveyorAction(conveyorAction requestedConveyorAction) {
 }
 
 void ConveyorAction::ActionInit() {
-
+    m_lowerConveyorSpeed = Robot::GetInstance()->conveyorSubsystem.lowerConveyorSpeed.Get();
+    m_upperConveyorSpeed = Robot::GetInstance()->conveyorSubsystem.upperConveyorSpeed.Get();
 }
 
 CORE::COREAutonAction::actionStatus ConveyorAction::Action() {
     switch(m_conveyorAction) {
         case CONVEYOR_ON:
-            Robot::GetInstance()->conveyorSubsystem.setMotor(-0.25, -0.25);
+            Robot::GetInstance()->conveyorSubsystem.setMotor(-m_lowerConveyorSpeed, -m_upperConveyorSpeed);
             break;
         case CONVEYOR_OFF:
             Robot::GetInstance()->conveyorSubsystem.setMotor(0, 0);

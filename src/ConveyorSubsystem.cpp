@@ -5,8 +5,8 @@ using namespace CORE;
 ConveyorSubsystem::ConveyorSubsystem() : m_lowerConveyorMotor(CONVEYOR_1_PORT),
                                          m_frontConveyorMotor(CONVEYOR_2_PORT),
                                          m_backConveyorMotor(CONVEYOR_3_PORT),
-                                         m_lowerConveyorSpeed("Lower Conveyor Speed", 0),
-                                         m_upperConveyorSpeed("Upper Conveyor Speed", 0) {
+                                         lowerConveyorSpeed("Lower Conveyor Speed", 0),
+                                         upperConveyorSpeed("Upper Conveyor Speed", 0) {
 }
 
 void ConveyorSubsystem::robotInit(){
@@ -23,9 +23,9 @@ void ConveyorSubsystem::teleopInit() {}
 
 void ConveyorSubsystem::teleop(){
     if(operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::RIGHT_TRIGGER)) {
-        setMotor(m_lowerConveyorSpeed.Get(), m_upperConveyorSpeed.Get());
+        setMotor(lowerConveyorSpeed.Get(), upperConveyorSpeed.Get());
     } else if(operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::RIGHT_BUTTON)) {
-        setMotor(-m_lowerConveyorSpeed.Get(), -m_upperConveyorSpeed.Get());
+        setMotor(-lowerConveyorSpeed.Get(), -upperConveyorSpeed.Get());
     } else {
         setMotor(0.0, 0.0);
     }

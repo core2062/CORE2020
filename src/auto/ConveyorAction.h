@@ -18,4 +18,5 @@ public:
     void ActionEnd() override;
 private:
     conveyorAction m_conveyorAction;
+    double m_lowerConveyorSpeed, m_upperConveyorSpeed;
 };
