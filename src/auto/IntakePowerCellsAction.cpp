@@ -1,4 +1,5 @@
 #include "IntakePowerCellsAction.h"
+#include "Robot.h"
 
 IntakePowerCellsAction::IntakePowerCellsAction(intakePowerCellsAction requestedIntakePowerCellAction) {
     m_intakePowerCellsAction = requestedIntakePowerCellAction;

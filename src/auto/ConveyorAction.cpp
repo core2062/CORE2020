@@ -1,4 +1,5 @@
 #include "ConveyorAction.h"
+#include "Robot.h"
 
 ConveyorAction::ConveyorAction(conveyorAction requestedConveyorAction) {
     m_conveyorAction = requestedConveyorAction;

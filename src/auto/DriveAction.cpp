@@ -1,4 +1,5 @@
 #include "DriveAction.h"
+#include "Robot.h"
 
 DriveAction::DriveAction(driveAction requestedDriveAction):
                                         m_distAutonMoveEncoderTicks("Auton Movement", 6000) {

@@ -1,4 +1,5 @@
 #include "LaunchBallsAction.h"
+#include "Robot.h"
 
 LaunchBallsAction::LaunchBallsAction(launchBallsAction requestedLaunchBallsAction) {
     m_launchBallsAction = requestedLaunchBallsAction;
