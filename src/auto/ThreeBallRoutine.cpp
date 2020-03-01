@@ -4,7 +4,7 @@ ThreeBallRoutine::ThreeBallRoutine() : COREAuton("Three Ball Routine") {}
 
 void ThreeBallRoutine::AddNodes() {
     launcherOnNode = new Node(5, new LaunchBallsAction(LAUNCHER_ON));
-    delayNode1 = new Node(10, new DelayAction());
+    delayNode1 = new Node(5, new DelayAction());
     conveyorOnNode = new Node(5, new ConveyorAction(CONVEYOR_ON));
     delayNode2 = new Node(2, new DelayAction());
     driveNode = new Node(5, new DriveAction(FORWARD));
