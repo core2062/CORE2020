@@ -6,16 +6,17 @@ IntakePowerCellsAction::IntakePowerCellsAction(intakePowerCellsAction requestedI
 }
 
 void IntakePowerCellsAction::ActionInit() {
+    m_intakeSpeed = Robot::GetInstance()->intakeSubsystem.intakeSpeed.Get();
 
 }
 
 CORE::COREAutonAction::actionStatus IntakePowerCellsAction::Action() {
     switch(m_intakePowerCellsAction) {
         case INTAKE:
-            Robot::GetInstance()->intakeSubsystem.SetIntake(0.2);
+            Robot::GetInstance()->intakeSubsystem.SetIntake(m_intakeSpeed);
             break;
         case OUTTAKE:
-            Robot::GetInstance()->intakeSubsystem.SetIntake(-0.2);
+            Robot::GetInstance()->intakeSubsystem.SetIntake(-m_intakeSpeed);
             break;
         case STOP:
             Robot::GetInstance()->intakeSubsystem.SetIntake(0);

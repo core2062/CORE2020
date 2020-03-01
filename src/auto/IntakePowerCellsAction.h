@@ -20,4 +20,5 @@ public:
     void ActionEnd() override;
 private:
     intakePowerCellsAction m_intakePowerCellsAction;
+    double m_intakeSpeed
 };
