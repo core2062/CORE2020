@@ -30,28 +30,32 @@ void TurretSubsystem::teleopInit() {
 void TurretSubsystem::teleop() {
     double manualInput = -operatorJoystick->GetAxis(CORE::COREJoystick::JoystickAxis::LEFT_STICK_X);
     bool aButtonPressed = operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::A_BUTTON);
-    double motorPercent = 0;
+    m_motorPercent = 0;
     bool atLeftStop = m_turret.GetSelectedSensorPosition(0) < (m_startupTurretPosition - 7000.0);
     bool atRightStop = m_turret.GetSelectedSensorPosition(0) > (m_startupTurretPosition + 7000.0);
 
     if (aButtonPressed) {
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode",3);
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("camMode",0);
-        motorPercent = CalculateMotorFromVision(atLeftStop, atRightStop);
+        m_motorPercent = VisionMove(atLeftStop, atRightStop);
     } else if ((!atRightStop && manualInput < 0) || (!atLeftStop && manualInput > 0)) {
          nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode",1);
          nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("camMode",1);
         // manual turret position
         double turretSpeed = m_turretSpeed.Get();
-        motorPercent = turretSpeed * manualInput;
+        m_motorPercent = turretSpeed * manualInput;
     }
-    SetTurret(motorPercent);
+    SetTurret(m_motorPercent);
 
     SmartDashboard::PutNumber("Distance from target", GetDistance());
     SmartDashboard::PutNumber("Turret position", m_turret.GetSelectedSensorPosition(0));
     SmartDashboard::PutBoolean("At Left Stop", atLeftStop);
     SmartDashboard::PutBoolean("At Right Stop", atRightStop);
     SmartDashboard::PutBoolean("A Button Pressed", operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::A_BUTTON));
+}
+
+double TurretSubsystem::VisionMove(bool atLeftStop, bool atRightStop) {
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode",3);
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("camMode",0);
+    return m_motorPercent = CalculateMotorFromVision(atLeftStop, atRightStop);
 }
 
 double TurretSubsystem::CalculateMotorFromVision(bool atLeftStop, bool atRightStop) {
