@@ -1,6 +1,6 @@
 #include "FiveBallRoutine.h"
 
-FiveBallRoutinePickup::FiveBallRoutine() : COREAuton("Three Ball Routine") {}
+FiveBallRoutinePickup::FiveBallRoutinePickup() : COREAuton("Three Ball Routine") {}
 
 void FiveBallRoutinePickup::AddNodes() {
     delayNode = new Node(5, new DelayAction());
