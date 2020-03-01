@@ -14,10 +14,12 @@ void ConveyorAction::ActionInit() {
 CORE::COREAutonAction::actionStatus ConveyorAction::Action() {
     switch(m_conveyorAction) {
         case CONVEYOR_ON:
-            Robot::GetInstance()->conveyorSubsystem.setMotor(-m_lowerConveyorSpeed, -m_upperConveyorSpeed);
+            Robot::GetInstance()->conveyorSubsystem.setLowerMotor(-m_lowerConveyorSpeed);
+            Robot::GetInstance()->conveyorSubsystem.setUpperMotor(-m_upperConveyorSpeed);
             break;
         case CONVEYOR_OFF:
-            Robot::GetInstance()->conveyorSubsystem.setMotor(0, 0);
+            Robot::GetInstance()->conveyorSubsystem.setLowerMotor(0);
+            Robot::GetInstance()->conveyorSubsystem.setUpperMotor(0);
             break;
     }
     return COREAutonAction::actionStatus::END;

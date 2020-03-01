@@ -29,17 +29,17 @@ void ConveyorSubsystem::teleopInit() {}
 void ConveyorSubsystem::teleop(){
     
     if(operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::RIGHT_TRIGGER)) {
-        setLowerMotor(m_lowerConveyorSpeed.Get());
+        setLowerMotor(lowerConveyorSpeed.Get());
     } else if(operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::RIGHT_BUTTON)) {
-        setLowerMotor(-m_lowerConveyorSpeed.Get());
+        setLowerMotor(-lowerConveyorSpeed.Get());
     } else {
         setLowerMotor(0.0);
     }
     
     if(operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::LEFT_TRIGGER)) {
-        setUpperMotor(m_upperConveyorSpeed.Get());
+        setUpperMotor(upperConveyorSpeed.Get());
     } else if(operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::LEFT_BUTTON)) {
-        setUpperMotor(-m_upperConveyorSpeed.Get());
+        setUpperMotor(-upperConveyorSpeed.Get());
     } else {
         setUpperMotor(0.0);
     }
