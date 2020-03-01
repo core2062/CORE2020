@@ -16,7 +16,8 @@ public:
     ThreeBallRoutine();
     void AddNodes() override;
 private:
-    Node * delayNode;
+    Node * delayNode1;   
+    Node * delayNode2;
     Node * launcherOnNode;
     Node * conveyorOnNode;
     Node * driveNode;

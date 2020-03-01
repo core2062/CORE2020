@@ -15,6 +15,8 @@
 #include "TurretSubsystem.h"
 #include "Config.h"
 #include "TestRoutine.h"
+#include "DriveRoutine.h"
+#include "ThreeBallRoutine.h"
 
 using namespace CORE;
 using namespace std;
@@ -34,6 +36,8 @@ public:
 	TurretSubsystem turretSubsystem;
 	ConveyorSubsystem conveyorSubsystem;
 	TestRoutine testRoutine;
+	DriveRoutine driveRoutine;
+	ThreeBallRoutine threeBallRoutine;
 
 private:
 	static Robot * m_instance;
