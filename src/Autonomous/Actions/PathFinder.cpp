@@ -15,6 +15,7 @@ CORE::COREAutonAction::actionStatus PathFinderAction::Action() {
     if (m_autonomousCommand != nullptr) {
         m_autonomousCommand->Schedule();
     }
+    cout << "running path finder action" << endl;
     return COREAutonAction::actionStatus::END;
 }
 

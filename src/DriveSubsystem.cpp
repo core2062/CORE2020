@@ -50,10 +50,10 @@ void DriveSubsystem::Periodic() {
 void DriveSubsystem::teleop() {
 	// Code for teleop. Sets motor speed based on the values for the joystick, runs compressor,
 	// toggles gears
-	double mag = -m_controller.GetY(frc::GenericHID::kLeftHand);
+	double mag = -driverJoystick->GetAxis(CORE::COREJoystick::LEFT_STICK_Y);
 	SmartDashboard::PutNumber("mag", mag);
 	std::cout << mag << endl;
-	double rot = m_controller.GetX(frc::GenericHID::kRightHand);
+	double rot = driverJoystick->GetAxis(CORE::COREJoystick::RIGHT_STICK_X);
 	SmartDashboard::PutNumber("rot", rot);
 
 	VelocityPair speeds = COREEtherDrive::Calculate(mag, rot, .1);
