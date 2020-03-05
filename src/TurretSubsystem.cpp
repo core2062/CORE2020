@@ -9,10 +9,10 @@ TurretSubsystem::TurretSubsystem(): m_turret(TURRET_PORT),
                                     m_DistCoefA("DistCoefA", 0),
                                     m_DistCoefB("DistCoefB", 0),
                                     corePID(0, 0, 0, 0) {
-    std::cout << "Turret Subsystem constructer called" << std::endl;
 }
 
 void TurretSubsystem::robotInit() {
+    m_startupTurretPosition = m_turret.GetSelectedSensorPosition(0);
     operatorJoystick->RegisterButton(CORE::COREJoystick::JoystickButton::A_BUTTON);
     operatorJoystick->RegisterAxis(CORE::COREJoystick::LEFT_STICK_X);
     InitTalons();
@@ -24,7 +24,6 @@ void TurretSubsystem::robotInit() {
 }
 
 void TurretSubsystem::teleopInit() {
-    m_startupTurretPosition = m_turret.GetSelectedSensorPosition(0);
 }
 
 void TurretSubsystem::teleop() {
@@ -50,6 +49,10 @@ void TurretSubsystem::teleop() {
     SmartDashboard::PutBoolean("At Left Stop", atLeftStop);
     SmartDashboard::PutBoolean("At Right Stop", atRightStop);
     SmartDashboard::PutBoolean("A Button Pressed", operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::A_BUTTON));
+}
+
+double TurretSubsystem::turretPosition() {
+    return m_turret.GetSelectedSensorPosition(0);
 }
 
 double TurretSubsystem::VisionMove(bool atLeftStop, bool atRightStop) {

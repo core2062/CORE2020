@@ -26,6 +26,7 @@ public:
     void teleopInit() override;
     void teleop() override;
 
+    double turretPosition();
     double VisionMove(bool atLeftStop, bool atRightStop);
     double CalculateMotorFromVision(bool atLeftStop, bool atRightStop);
     double GetDistance();

@@ -1,25 +1,35 @@
-// #include "TurretTrackingAction.h"
-// #include "Robot.h"
+#include "TurretTrackingAction.h"
+#include "Robot.h"
 
-// LaunchBallsAction::LaunchBallsAction(launchBallsAction requestedLaunchBallsAction) {
-//     m_launchBallsAction = requestedLaunchBallsAction;
-// }
+TurretTrackingAction::TurretTrackingAction(turretTrackingAction requestedTurretTrackingAction) {
+    m_turretTrackingAction = requestedTurretTrackingAction;
+}
 
-// void LaunchBallsAction::ActionInit() {
-// }
+void TurretTrackingAction::ActionInit() {
+    TurretSubsystem* turretSubsystem = &Robot::GetInstance()->turretSubsystem;
+    m_turretStartupPosition = turretSubsystem->turretPosition();
+}
 
-// CORE::COREAutonAction::actionStatus LaunchBallsAction::Action() {
-//     switch(m_launchBallsAction) {
-//         case TRACKING_ON:
-//             Robot::GetInstance()->launcherSubsystem.launcherOn(true);
-//             break;
-//         case TRACKING_OFF:
-//             Robot::GetInstance()->launcherSubsystem.launcherOn(false);
-//             break;
-//     }
-//     return COREAutonAction::actionStatus::END;
-// } 
+CORE::COREAutonAction::actionStatus TurretTrackingAction::Action() {
+    TurretSubsystem* turretSubsystem = &Robot::GetInstance()->turretSubsystem;
+    m_turretPosition = turretSubsystem->turretPosition();
+    bool atLeftStop = m_turretPosition < (m_turretStartupPosition - 7000.0);
+    bool atRightStop = m_turretPosition > (m_turretStartupPosition + 7000.0);
+    switch(m_turretTrackingAction) {
+        case TRACKING_ON: {
+            double motorPercent = turretSubsystem->VisionMove(atLeftStop, atRightStop);
+            Robot::GetInstance()->turretSubsystem.SetTurret(motorPercent);
+            break;
+        }
+        case TRACKING_OFF: {
+            Robot::GetInstance()->turretSubsystem.SetTurret(0.0);
+            break;
+        }
+        default: break;
+    }
+    return COREAutonAction::actionStatus::END;
+} 
 
-// void LaunchBallsAction::ActionEnd() {
+void TurretTrackingAction::ActionEnd() {
 
-// }
+}

@@ -3,7 +3,7 @@
 
 DriveAction::DriveAction(driveAction requestedDriveAction):
                                         m_distAutonMoveEncoderTicks("Auton Movement", 6000) {
-    m_driveAction = requestedDriveAction;
+                                        m_driveAction = requestedDriveAction;
 
 }
 

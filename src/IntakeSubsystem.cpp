@@ -1,6 +1,7 @@
 #include "IntakeSubsystem.h"
 
-IntakeSubsystem::IntakeSubsystem() : m_intakeMotor(INTAKE_PORT), 
+IntakeSubsystem::IntakeSubsystem() : 
+                                     m_intakeMotor(INTAKE_PORT), 
                                      m_intakeSolenoid(LEFT_DRIVE_SHIFTER_PCM, INTAKE_DOWN_PORT, INTAKE_UP_PORT),
                                      intakeSpeed("Intake Speed", 0.45){
 }
@@ -10,6 +11,7 @@ void IntakeSubsystem::robotInit(){
     operatorJoystick->RegisterButton(CORE::COREJoystick::JoystickButton::RIGHT_TRIGGER);
     operatorJoystick->RegisterButton(CORE::COREJoystick::JoystickButton::RIGHT_BUTTON);
     m_isIntakeDown = false;
+    m_intakeMotor.SetInverted(true);
 }
 
 void IntakeSubsystem::teleopInit() {}
