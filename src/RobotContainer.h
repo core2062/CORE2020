@@ -8,6 +8,10 @@
 #include <frc2/command/PIDCommand.h>
 #include <frc2/command/ParallelRaceGroup.h>
 #include <frc2/command/RunCommand.h>
+#include <frc/trajectory/TrajectoryUtil.h>
+#include <wpi/SmallString.h>
+#include <frc/Filesystem.h>
+#include <wpi/Path.h>
 
 #include "Constants.h"
 #include "DriveSubsystem.h"
