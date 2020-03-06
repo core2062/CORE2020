@@ -9,7 +9,7 @@ using namespace CORE;
 
 class PathFinderAction : public COREAutonAction {
 public:
-    explicit PathFinderAction();
+    explicit PathFinderAction(std::string path);
     void ActionInit() override;
     actionStatus Action() override;
     void ActionEnd() override;

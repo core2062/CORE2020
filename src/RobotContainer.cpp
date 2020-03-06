@@ -25,11 +25,7 @@ RobotContainer::RobotContainer() {
       {&m_drive}));
 }
 
-frc2::Command* RobotContainer::GetTeleopDriveCommand() {
-    m_drive.teleop();
-}
-
-frc2::Command* RobotContainer::GetAutonomousCommand() {
+frc2::Command* RobotContainer::GetAutonomousCommand(std::string path) {
   // Create a voltage constraint to ensure we don't accelerate too fast
   frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
       frc::SimpleMotorFeedforward<units::meters>(
@@ -48,7 +44,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     wpi::SmallString<64> deployDirectory;
     frc::filesystem::GetDeployDirectory(deployDirectory);
     wpi::sys::path::append(deployDirectory, "paths");
-    wpi::sys::path::append(deployDirectory, "right.wpilib.json");
+    wpi::sys::path::append(deployDirectory, path);
     frc::Trajectory trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory);
 
   frc2::RamseteCommand ramseteCommand(

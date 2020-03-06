@@ -23,8 +23,7 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  frc2::Command* GetAutonomousCommand();
-  frc2::Command* GetTeleopDriveCommand();
+  frc2::Command* GetAutonomousCommand(std::string path);
 
  private:
 
