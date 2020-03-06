@@ -3,6 +3,8 @@
 Autonomous::Autonomous() : COREAuton("Test Auto") {}
 
 void Autonomous::AddNodes() {
-    m_drivePath = new Node(5, new PathFinderAction("example.wpilib.json"));
+    m_drivePath = new Node(15, new PathFinderAction("example.wpilib.json"));
+    m_secondDrivePath = new Node(15, new PathFinderAction("foreward.wpilib.json"));
     AddFirstNode(m_drivePath);
+    m_drivePath->AddNext(m_secondDrivePath);
 }

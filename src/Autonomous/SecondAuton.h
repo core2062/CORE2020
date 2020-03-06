@@ -7,11 +7,12 @@
 using namespace CORE;
 using namespace std;
 
-class Autonomous: public COREAuton {
+class SecondAuton: public COREAuton {
 public:
-    Autonomous();
+    SecondAuton();
     void AddNodes() override;
 private:
-    Node * m_drivePath;
-    Node * m_secondDrivePath;
+    Node * m_drivePath = nullptr;
+    Node * m_wait = nullptr;
+    Node * m_secondDrivePath = nullptr;
 };
