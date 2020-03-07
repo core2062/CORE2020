@@ -13,21 +13,30 @@ void TurretTrackingAction::ActionInit() {
 CORE::COREAutonAction::actionStatus TurretTrackingAction::Action() {
     TurretSubsystem* turretSubsystem = &Robot::GetInstance()->turretSubsystem;
     m_turretPosition = turretSubsystem->turretPosition();
-    bool atLeftStop = m_turretPosition < (m_turretStartupPosition - 7000.0);
-    bool atRightStop = m_turretPosition > (m_turretStartupPosition + 7000.0);
+    bool atLeftStop = false; //m_turretPosition < (m_turretStartupPosition - 7000.0);
+    bool atRightStop = false; //m_turretPosition > (m_turretStartupPosition + 7000.0);
     switch(m_turretTrackingAction) {
         case TRACKING_ON: {
             double motorPercent = turretSubsystem->VisionMove(atLeftStop, atRightStop);
-            Robot::GetInstance()->turretSubsystem.SetTurret(motorPercent);
+            cout << "Center Error" << turretSubsystem->centerError << endl;
+            if (turretSubsystem->hasCenterX) {
+                if (abs(turretSubsystem->centerError) > 10) {
+                    turretSubsystem->SetTurret(motorPercent);
+                    break;
+                } else {
+                    turretSubsystem->SetTurret(0.0);
+                    return COREAutonAction::actionStatus::END;
+                }
+            }
             break;
         }
         case TRACKING_OFF: {
-            Robot::GetInstance()->turretSubsystem.SetTurret(0.0);
-            break;
+            turretSubsystem->SetTurret(0.0);
+            return COREAutonAction::actionStatus::END;
         }
         default: break;
     }
-    return COREAutonAction::actionStatus::END;
+    return COREAutonAction::actionStatus::CONTINUE;
 } 
 
 void TurretTrackingAction::ActionEnd() {

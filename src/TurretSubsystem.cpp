@@ -19,8 +19,7 @@ void TurretSubsystem::robotInit() {
     // start NetworkTables
     ntinst = nt::NetworkTableInstance::GetDefault();
     ntinst.StartClientTeam(2062);
-
-
+    m_turret.SetNeutralMode(motorcontrol::NeutralMode::Brake);
 }
 
 void TurretSubsystem::teleopInit() {
@@ -68,10 +67,10 @@ double TurretSubsystem::CalculateMotorFromVision(bool atLeftStop, bool atRightSt
     corePID.SetIntegralConstant(m_KI.Get());
     corePID.SetProportionalConstant(m_KP.Get());
     auto table = ntinst.GetTable("limelight");
-    bool hasCenterX = table->GetNumber("tv", 0.0) == 1;
+    hasCenterX = table->GetNumber("tv", 0.0) == 1;
     double conversion = 4096 / -360; // convert degrees to ticks
     // calculate center error as a percent output for the motor
-    double centerError = table->GetNumber("tx", 0.0) * conversion;
+    centerError = table->GetNumber("tx", 0.0) * conversion;
 
     SmartDashboard::PutNumber("Center Error", centerError);
     SmartDashboard::PutBoolean("HasTable", hasCenterX);

@@ -7,6 +7,7 @@
 #include "LaunchBallsAction.h"
 #include "ConveyorAction.h"
 #include "DelayAction.h"
+#include "TurretTrackingAction.h"
 
 using namespace CORE;
 using namespace std;

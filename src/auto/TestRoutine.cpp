@@ -3,10 +3,10 @@
 TestRoutine::TestRoutine() : COREAuton("Test Routine") {}
 
 void TestRoutine::AddNodes() {
-    testNode = new Node(5, new LaunchBallsAction(LAUNCHER_ON));
+    testNode = new Node(5, new TurretTrackingAction(TRACKING_ON));
     delayNode = new Node(3, new DelayAction());
-    testNode2 = new Node(5, new LaunchBallsAction(LAUNCHER_OFF));
+    testNode2 = new Node(5, new TurretTrackingAction(TRACKING_OFF));
     AddFirstNode(testNode);
-    testNode->AddNext(delayNode);
-    delayNode->AddNext(testNode2);
+    testNode->AddNext(testNode2);
+    //delayNode->AddNext(testNode2);
 }

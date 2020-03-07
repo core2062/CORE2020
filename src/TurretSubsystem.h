@@ -32,5 +32,6 @@ public:
     double GetDistance();
     void InitTalons();
     void SetTurret(double turretPercent);
-
+    double centerError;
+    bool hasCenterX;
 };
