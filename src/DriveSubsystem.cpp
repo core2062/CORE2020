@@ -145,17 +145,18 @@ void DriveSubsystem::resetEncoders() {
 
 double DriveSubsystem::getStartHeading() {
 	try {
-		m_gyro = new AHRS(SerialPort::Port::kMXP);
+		m_gyro = new AHRS(SerialPort::Port::kUSB);
     	SmartDashboard::PutNumber("Gyro value", std::remainder(m_gyro->GetAngle(), 360));
 		return std::remainder(m_gyro->GetAngle(), 360) * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
 	} catch (std::exception ex) {
-  		std::cout << "Gyro isn't working in get heading!" << endl;
+  		std::cout << "Gyro isn't working in get start heading!" << endl;
 		return 0;
 	}
 }
 
 double DriveSubsystem::getHeading() {
 	try {
+		SmartDashboard::PutNumber("Gyro Yaw", m_gyro->GetYaw());
 		SmartDashboard::PutNumber("Gyro Heading", std::remainder(m_gyro->GetAngle(), 360) * (DriveConstants::kGyroReversed ? -1.0 : 1.0));
 		return std::remainder(m_gyro->GetAngle(), 360) * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
 	} catch (std::exception ex) {
