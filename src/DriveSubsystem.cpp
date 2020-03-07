@@ -62,6 +62,7 @@ void DriveSubsystem::teleop() {
 	SmartDashboard::PutNumber("Right side speed", speeds.right);
 	SmartDashboard::PutNumber("Left side encoder", m_leftSlave.GetSelectedSensorPosition(0));
 	SmartDashboard::PutNumber("Right side encoder", m_rightMaster.GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("Gyro angle", m_gyro->GetAngle());
 
 	if(driverJoystick->GetRisingEdge(CORE::COREJoystick::JoystickButton::RIGHT_TRIGGER)) {
 		toggleGear();
@@ -144,7 +145,7 @@ void DriveSubsystem::resetEncoders() {
 
 double DriveSubsystem::getStartHeading() {
 	try {
-		m_gyro = new AHRS(SPI::Port::kMXP);
+		m_gyro = new AHRS(SerialPort::Port::kMXP);
     	SmartDashboard::PutNumber("Gyro value", std::remainder(m_gyro->GetAngle(), 360));
 		return std::remainder(m_gyro->GetAngle(), 360) * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
 	} catch (std::exception ex) {
