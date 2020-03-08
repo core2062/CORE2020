@@ -10,7 +10,7 @@ constexpr int kLeftMotor1Port = 0;
 constexpr int kLeftMotor2Port = 1;
 constexpr int kRightMotor1Port = 2;
 constexpr int kRightMotor2Port = 3;
-
+ 
 constexpr int kLeftEncoderPorts[]{0, 1};
 constexpr int kRightEncoderPorts[]{2, 3};
 constexpr bool kLeftEncoderReversed = false;
@@ -27,9 +27,9 @@ constexpr double kEncoderDistancePerPulse =
 
 constexpr bool kGyroReversed = true;
 
-constexpr auto ks = 0.22_V;
-constexpr auto kv = 1.98 * 1_V * 1_s / 1_m;
-constexpr auto ka = 0.2 * 1_V * 1_s * 1_s / 1_m;
+constexpr auto ks = 3.14_V;
+constexpr auto kv = 0.146 * 1_V * 1_s / 1_m;
+constexpr auto ka = 0.193 * 1_V * 1_s * 1_s / 1_m;
 
 // Example value only - as above, this must be tuned for your drive!
 constexpr double kPDriveVel = 8.5;
