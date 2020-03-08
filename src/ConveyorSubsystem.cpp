@@ -43,6 +43,9 @@ void ConveyorSubsystem::teleop(){
     } else {
         setUpperMotor(0.0);
     }
+
+    bool ballDetected = m_input.Get();
+    frc::SmartDashboard::PutBoolean("Ball Detected", ballDetected);
 }
 
 void ConveyorSubsystem::setLowerMotor(double lowerConveyorSpeed){

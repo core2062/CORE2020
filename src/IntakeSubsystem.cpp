@@ -1,9 +1,9 @@
 #include "IntakeSubsystem.h"
 
 IntakeSubsystem::IntakeSubsystem() : 
+                                     intakeSpeed("Intake Speed", 0.45),
                                      m_intakeMotor(INTAKE_PORT), 
-                                     m_intakeSolenoid(LEFT_DRIVE_SHIFTER_PCM, INTAKE_DOWN_PORT, INTAKE_UP_PORT),
-                                     intakeSpeed("Intake Speed", 0.45){
+                                     m_intakeSolenoid(LEFT_DRIVE_SHIFTER_PCM, INTAKE_DOWN_PORT, INTAKE_UP_PORT){
 }
 
 void IntakeSubsystem::robotInit(){
