@@ -19,5 +19,6 @@ public:
 private: 
     TalonSRX m_lowerConveyorMotor, m_frontConveyorMotor, m_backConveyorMotor;
     frc::DigitalInput m_input{0};
+    bool m_autoConveyor;
 };
 
