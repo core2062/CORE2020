@@ -30,8 +30,6 @@ void ConveyorSubsystem::teleopInit() {
 }
 
 void ConveyorSubsystem::teleop(){
-    
-
     bool ballDetected = m_input.Get();
     frc::SmartDashboard::PutBoolean("Ball Detected", ballDetected);
 
@@ -45,9 +43,9 @@ void ConveyorSubsystem::teleop(){
         }
         m_autoConveyor = true;
     } else if (!operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::Y_BUTTON)) {
-        if(operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::RIGHT_TRIGGER)) {
+        if(operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::LEFT_TRIGGER)) {
             setLowerMotor(lowerConveyorSpeed.Get());
-        } else if(operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::RIGHT_BUTTON)) {
+        } else if(operatorJoystick->GetButton(CORE::COREJoystick::JoystickButton::LEFT_BUTTON)) {
             setLowerMotor(-lowerConveyorSpeed.Get());
         } else {
             setLowerMotor(0.0);
