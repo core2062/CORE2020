@@ -57,36 +57,19 @@ model {
             sources.cpp {
                 source {
                     srcDir 'src'
+                    srcDir 'src/auto'
                     include '**/*.cpp', '**/*.cc'
                 }
                 exportedHeaders {
                     srcDir 'src'
-                    srcDirs '../CORERobotLib/src' 
-                    srcDir "../CORERobotLib/3rdparty/json/src/"
-                    if (includeSrcInIncludeRoot) {
-                        srcDir 'src'
-                    }
+                    srcDir 'src/auto'
+                    srcDir '../CORERobotLib/src' 
+                    srcDir '../CORERobotLib/3rdparty/json/src/'
                 }
             }
 
             // Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.
             wpi.deps.wpilib(it)
-            wpi.deps.vendor.cpp(it)
-        }
-    }
-    testSuites {
-        frcUserProgramTest(GoogleTestTestSuiteSpec) {
-            testing $.components.frcUserProgram
-
-            sources.cpp {
-                source {
-                    srcDir 'src'
-                    include '**/*.cpp'
-                }
-            }
-
-            wpi.deps.wpilib(it)
-            wpi.deps.googleTest(it)
             wpi.deps.vendor.cpp(it)
         }
     }

@@ -1,53 +1,22 @@
 #pragma once
 
 #include <string>
-
+#include <iostream>
+#include <frc/RobotBase.h>
 #include <frc/TimedRobot.h>
 #include <CORERobotLib.h>
-#include <frc2/command/CommandScheduler.h>
-#include <DriveSubsystem.h>
-#include <LauncherSubsystem.h>
-#include <ClimberSubsystem.h>
-#include <IntakeSubsystem.h>
-#include <ConveyorSubsystem.h>
 #include <COREFramework/COREScheduler.h>
-#include <Autonomous/Auton.h>
-#include <frc/trajectory/TrajectoryUtil.h>
-#include <frc/DriverStation.h>
-#include <wpi/Path.h>
-#include <frc2/command/Command.h>
-#include <RobotContainer.h>
-#include <wpi/SmallString.h>
-#include <frc/Filesystem.h>
-#include <iostream>
-#include <COREUtilities/COREDriverstation.h>
-
-/* Drive ports */
-#define LEFT_FRONT_PORT 11
-#define LEFT_BACK_PORT 10
-#define RIGHT_FRONT_PORT 12
-#define RIGHT_BACK_PORT 13
-#define INTAKE_PORT 14
-#define CONVEYOR_1_PORT 15
-#define CONVEYOR_2_PORT 16
-#define TURRET_PORT 17
-
-
-/* Solenoids */
-#define LEFT_DRIVE_SHIFTER_PCM 1
-#define RIGHT_DRIVE_SHIFTER_PCM 1
-#define COMPRESSOR_PCM 2
-#define LEFT_DRIVE_SHIFTER_HIGH_GEAR_PORT 0
-#define RIGHT_DRIVE_SHIFTER_HIGH_GEAR_PORT 2 
-#define LEFT_DRIVE_SHIFTER_LOW_GEAR_PORT 1
-#define RIGHT_DRIVE_SHIFTER_LOW_GEAR_PORT 3
-#define INTAKE_DOWN_PORT 4
-#define INTAKE_UP_PORT 5
-
-
-/* Launcher Ports */
-#define TOP_LAUNCHER_MOTOR_PORT 15
-#define BOTTOM_LAUNCHER_MOTOR_PORT 16
+#include "ClimberSubsystem.h"
+#include "ControlPanelSubsystem.h"
+#include "ConveyorSubsystem.h"
+#include "DriveSubsystem.h"
+#include "IntakeSubsystem.h"
+#include "LauncherSubsystem.h"
+#include "TurretSubsystem.h"
+#include "Config.h"
+#include "TestRoutine.h"
+#include "DriveRoutine.h"
+#include "ThreeBallRoutine.h"
 
 using namespace CORE;
 using namespace std;
@@ -63,9 +32,16 @@ public:
 	void test() override;
 	void testInit() override;
 	static Robot * GetInstance();
-	DriveSubsystem m_driveSubsystem;
-	RobotContainer m_container;
-	Autonomous driveAuto;
+	DriveSubsystem driveSubsystem;
+	LauncherSubsystem launcherSubsystem;
+	IntakeSubsystem intakeSubsystem;
+	TurretSubsystem turretSubsystem;
+	ConveyorSubsystem conveyorSubsystem;
+	TestRoutine testRoutine;
+	DriveRoutine driveRoutine;
+	ThreeBallRoutine threeBallRoutine;
+	ClimberSubsystem climberSubsystem;
+
 private:
   	frc2::Command* m_autonomousCommand = nullptr;
 	static Robot * m_instance;

@@ -1,24 +1,25 @@
 // #pragma once
 
-// #include <CORERobotLib.h>
-// #include <frc/DoubleSolenoid.h>
-// #include <ctre/Phoenix.h>
-// #include <Robot.h>
+#include <frc/DoubleSolenoid.h>
+#include <ctre/Phoenix.h>
+#include <CORERobotLib.h>
+#include "Config.h"
 
-// using namespace CORE;
-// using namespace frc;
+using namespace CORE;
 
-// class IntakeSubsystem : public CORESubsystem {
-// public:
-//     IntakeSubsystem();
-//     void robotInit() override;
-//     void teleopInit() override;
-//     void teleop() override;
-//     void SetIntake(double intakeSpeed);
-//     void ToggleIntake();
-// private:
-//     TalonSRX m_intakeMotor;
-//     DoubleSolenoid m_intakeSolenoid;
-//     COREConstant<double> m_intakeSpeed;
-//     bool m_isIntakeDown;
-// };
+class IntakeSubsystem : public CORESubsystem {
+public:
+    IntakeSubsystem();
+    void robotInit() override;
+    void teleopInit() override;
+    void teleop() override;
+    void SetIntake(double intakeSpeed);
+    void ToggleIntake();
+
+    COREConstant<double> intakeSpeed;
+
+private:
+    TalonSRX m_intakeMotor;
+    frc::DoubleSolenoid m_intakeSolenoid;
+    bool m_isIntakeDown;
+};

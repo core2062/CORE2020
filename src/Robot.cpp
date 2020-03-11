@@ -1,6 +1,6 @@
 #include <Robot.h>
 
-Robot * Robot::m_instance;
+Robot* Robot::m_instance;
 
 Robot::Robot() {
 	m_instance = this;
@@ -30,13 +30,9 @@ void Robot::TeleopPeriodic() {
     m_driveSubsystem.teleop();
 }
 
-void Robot::teleopInit() {
-    
-}
+void Robot::teleopInit() {}
 
-void Robot::test() {
-
-}
+void Robot::test() {}
 
 void Robot::teleop() {
     std::cout << "running teleop" << endl;
@@ -52,7 +48,7 @@ Robot * Robot::GetInstance() {
 }
 
 #ifndef RUNNING_FRC_TESTS
-int main() { 
-	return frc::StartRobot<Robot>(); 
+int main() {
+	return frc::StartRobot<Robot>();
 }
 #endif

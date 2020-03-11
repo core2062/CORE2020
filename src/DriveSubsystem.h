@@ -1,9 +1,10 @@
 #pragma once
 
-//#include "Robot.h"
-#include <CORERobotLib.h>
+#include <frc/Compressor.h>
+#include <frc/DoubleSolenoid.h>
 #include <ctre/Phoenix.h>
 #include <AHRS.h>
+#include <CORERobotLib.h>
 #include <COREFramework/COREScheduler.h>
 
 #include <frc/Compressor.h>
@@ -18,6 +19,11 @@
 #include <frc2/command/SubsystemBase.h>
 #include <Constants.h>
 #include <iostream>
+#include <COREUtilities/CORETimer.h>
+#include "Config.h"
+
+using namespace CORE;
+using namespace frc;
 
 enum class DriveSide{LEFT = 1, RIGHT = 2, BOTH = 3};
 
@@ -30,8 +36,9 @@ public:
 	void Periodic() override;
 	void teleopEnd() override;
 	void auton();
+	
+	double getRobotPosition();
 	void initTalons();
-
 	void setMotorSpeed(double speedInFraction, DriveSide whichSide);
 	void setMotorSpeed(double leftPercent, double rightPercent);
 	void fillCompressor();
@@ -55,6 +62,7 @@ public:
 	DifferentialDriveOdometry m_odometry;
 	COREConstant<double> m_driveTurnkP;
 	COREVector path;
+
 private:
 	double m_wheelCircumference = 0.4787787204;
 	WPI_TalonSRX m_leftMaster, m_rightMaster, m_leftSlave, m_rightSlave;
