@@ -6,17 +6,7 @@
 #pragma once
 
 namespace DriveConstants {
-constexpr int kLeftMotor1Port = 0;
-constexpr int kLeftMotor2Port = 1;
-constexpr int kRightMotor1Port = 2;
-constexpr int kRightMotor2Port = 3;
- 
-constexpr int kLeftEncoderPorts[]{0, 1};
-constexpr int kRightEncoderPorts[]{2, 3};
-constexpr bool kLeftEncoderReversed = false;
-constexpr bool kRightEncoderReversed = true;
-
-constexpr auto kTrackwidth = 0.69_m;
+constexpr auto kTrackwidth = 0.69_m; // Not sure if this is correct or if we need to manually measure
 extern const frc::DifferentialDriveKinematics kDriveKinematics;
 
 constexpr int kEncoderCPR = 1024;

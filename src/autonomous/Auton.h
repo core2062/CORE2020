@@ -13,5 +13,5 @@ public:
     void AddNodes() override;
 private:
     Node * m_drivePath;
-    Node * m_secondDrivePath;
+    // Node * m_secondDrivePath;
 };

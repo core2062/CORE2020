@@ -145,7 +145,7 @@ void DriveSubsystem::resetEncoders() {
 
 double DriveSubsystem::getStartHeading() {
 	try {
-		m_gyro = new AHRS(SerialPort::Port::kUSB);
+		m_gyro = new AHRS(SPI::Port::kMXP);
     	SmartDashboard::PutNumber("Gyro value", std::remainder(m_gyro->GetAngle(), 360));
 		return std::remainder(m_gyro->GetAngle(), 360) * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
 	} catch (std::exception ex) {

@@ -44,7 +44,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand(std::string path) {
     wpi::SmallString<64> deployDirectory;
     frc::filesystem::GetDeployDirectory(deployDirectory);
     wpi::sys::path::append(deployDirectory, "paths");
-    wpi::sys::path::append(deployDirectory, path);
+    wpi::sys::path::append(deployDirectory, "example.wpilib.json");
     frc::Trajectory trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory);
 
   frc2::RamseteCommand ramseteCommand(
