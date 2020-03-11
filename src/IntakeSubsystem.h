@@ -1,4 +1,4 @@
-// #pragma once
+#pragma once
 
 #include <frc/DoubleSolenoid.h>
 #include <ctre/Phoenix.h>

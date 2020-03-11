@@ -7,7 +7,6 @@
 #include <CORERobotLib.h>
 #include <COREFramework/COREScheduler.h>
 #include "ClimberSubsystem.h"
-#include "ControlPanelSubsystem.h"
 #include "ConveyorSubsystem.h"
 #include "DriveSubsystem.h"
 #include "IntakeSubsystem.h"
