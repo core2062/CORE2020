@@ -1,4 +1,4 @@
-// #pragma once
+#pragma once
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <ctre/Phoenix.h>
@@ -7,11 +7,12 @@
 #include <COREControl/COREPID.h>
 #include "Config.h"
 #include <math.h>
+#include <frc2/command/SubsystemBase.h>
 
 using namespace CORE;
 using namespace frc;
 
-class TurretSubsystem : public CORESubsystem {
+class TurretSubsystem : public CORESubsystem, public frc2::SubsystemBase {
 private:
     TalonSRX m_turret;
     double m_startupTurretPosition, m_motorPercent;

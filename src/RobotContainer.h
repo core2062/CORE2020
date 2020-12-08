@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <frc/controller/PIDController.h>
@@ -15,6 +14,12 @@
 
 #include "Constants.h"
 #include "DriveSubsystem.h"
+#include "ClimberSubsystem.h"
+#include "ConveyorSubsystem.h"
+#include "DriveSubsystem.h"
+#include "IntakeSubsystem.h"
+#include "LauncherSubsystem.h"
+#include "TurretSubsystem.h"
 #include "CORERobotLib.h"
 
 using namespace CORE;
@@ -31,7 +36,11 @@ class RobotContainer {
 
   // The robot's subsystems
   DriveSubsystem m_drive;
-
+  IntakeSubsystem m_intake;
+  TurretSubsystem m_turret;
+  ConveyorSubsystem m_conveyor;
+  ClimberSubsystem m_climber;
+  LauncherSubsystem m_launcher;
   // The chooser for the autonomous routines
   frc::SendableChooser<frc2::Command*> m_chooser;
 };

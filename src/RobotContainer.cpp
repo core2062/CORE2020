@@ -23,6 +23,31 @@ RobotContainer::RobotContainer() {
         m_drive.teleop();
       },
       {&m_drive}));
+  m_turret.SetDefaultCommand(frc2::RunCommand(
+      [this] {
+        m_turret.teleop();
+      },
+      {&m_turret}));
+  m_conveyor.SetDefaultCommand(frc2::RunCommand(
+      [this] {
+        m_conveyor.teleop();
+      },
+      {&m_conveyor}));
+  m_climber.SetDefaultCommand(frc2::RunCommand(
+      [this] {
+        m_climber.teleop();
+      },
+      {&m_climber}));
+  m_intake.SetDefaultCommand(frc2::RunCommand(
+      [this] {
+        m_intake.teleop();
+      },
+      {&m_intake}));
+  m_launcher.SetDefaultCommand(frc2::RunCommand(
+      [this] {
+        m_launcher.teleop();
+      },
+      {&m_launcher}));
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand(std::string path) {

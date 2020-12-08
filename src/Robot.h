@@ -16,6 +16,8 @@
 #include "TestRoutine.h"
 #include "DriveRoutine.h"
 #include "ThreeBallRoutine.h"
+#include "RobotContainer.h"
+#include "Autonomous/Auton.h"
 
 using namespace CORE;
 using namespace std;
@@ -40,6 +42,8 @@ public:
 	DriveRoutine driveRoutine;
 	ThreeBallRoutine threeBallRoutine;
 	ClimberSubsystem climberSubsystem;
+	RobotContainer robotContainer;
+	Autonomous autonomous;
 
 private:
   	frc2::Command* m_autonomousCommand = nullptr;

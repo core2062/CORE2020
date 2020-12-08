@@ -26,8 +26,6 @@ void Robot::RobotPeriodic() {
 }
 
 void Robot::TeleopPeriodic() {
-    std::cout << "running teleop periodic" << endl;
-    m_driveSubsystem.teleop();
 }
 
 void Robot::teleopInit() {}
@@ -35,8 +33,7 @@ void Robot::teleopInit() {}
 void Robot::test() {}
 
 void Robot::teleop() {
-    std::cout << "running teleop" << endl;
-    m_driveSubsystem.teleop();
+    cout<<"RobotTeleop"<<endl;
 }
 
 void Robot::testInit() {

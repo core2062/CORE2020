@@ -1,6 +1,6 @@
 #include "LauncherSubsystem.h"
 
-// using namespace CORE;
+using namespace CORE;
 
 LauncherSubsystem::LauncherSubsystem() : 
                                         m_launcherMotor(BOTTOM_LAUNCHER_MOTOR_PORT), 
@@ -8,12 +8,13 @@ LauncherSubsystem::LauncherSubsystem() :
 }
 
 void LauncherSubsystem::robotInit() {
-    operatorJoystick->RegisterButton(CORE::COREJoystick::JoystickButton::B_BUTTON);
+
 }
 
 void LauncherSubsystem::teleopInit() {
     m_launcherOn = false;
 }
+
 
 void LauncherSubsystem::teleop() {
     if (!m_launcherOn && operatorJoystick->GetRisingEdge(CORE::COREJoystick::JoystickButton::B_BUTTON)) {

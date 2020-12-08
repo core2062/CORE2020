@@ -17,13 +17,9 @@ DriveSubsystem::DriveSubsystem() :
 }
 
 void DriveSubsystem::robotInit() {
-	cout << "Drive Subsystem" << endl;
-	cout << "joysticks are being registered" << endl;
 	// Registers joystick axis and buttons, does inital setup for talons
-	driverJoystick->RegisterAxis(CORE::COREJoystick::LEFT_STICK_Y);
-	driverJoystick->RegisterAxis(CORE::COREJoystick::RIGHT_STICK_X);
-	driverJoystick->RegisterButton(CORE::COREJoystick::RIGHT_TRIGGER);
     initTalons();
+	m_drive.SetSafetyEnabled(false);
 }
 
 void DriveSubsystem::teleopInit() {
@@ -61,10 +57,6 @@ void DriveSubsystem::teleop() {
 	SmartDashboard::PutNumber("Left side encoder", m_leftMaster.GetSelectedSensorPosition(0));
 	SmartDashboard::PutNumber("Right side encoder", m_rightMaster.GetSelectedSensorPosition(0));
 	SmartDashboard::PutNumber("Gyro angle", m_gyro->GetAngle());
-
-	if(driverJoystick->GetRisingEdge(CORE::COREJoystick::JoystickButton::RIGHT_TRIGGER)) {
-		toggleGear();
-	}
 	fillCompressor();
 }
 

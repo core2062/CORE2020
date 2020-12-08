@@ -1,13 +1,14 @@
-// #pragma once
+#pragma once
 
 #include <frc/DoubleSolenoid.h>
 #include <CORERobotLib.h>
 #include "Config.h"
+#include <frc2/command/SubsystemBase.h>
 
 using namespace CORE;
 using namespace frc;
 
-class ClimberSubsystem : public CORESubsystem {
+class ClimberSubsystem : public CORESubsystem, public frc2::SubsystemBase {
 public:
     ClimberSubsystem();
     void robotInit() override;

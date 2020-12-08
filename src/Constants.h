@@ -1,9 +1,11 @@
+#pragma once
+
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/trajectory/constraint/DifferentialDriveKinematicsConstraint.h>
 #include <units/units.h>
 #include <wpi/math>
 // All of these values should be updated according to what works with the characterization tool
-#pragma once
+
 
 namespace DriveConstants {
 constexpr auto kTrackwidth = 0.69_m; // Not sure if this is correct or if we need to manually measure

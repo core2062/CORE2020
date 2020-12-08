@@ -10,8 +10,8 @@ void PathFinderAction::ActionInit() {
 }
 
 CORE::COREAutonAction::actionStatus PathFinderAction::Action() {
-    Robot::GetInstance()->m_driveSubsystem.auton();
-    m_autonomousCommand = Robot::GetInstance()->m_container.GetAutonomousCommand(m_path);
+    Robot::GetInstance()->driveSubsystem.auton();
+    m_autonomousCommand = Robot::GetInstance()->robotContainer.GetAutonomousCommand(m_path);
     if (m_autonomousCommand != nullptr) {
         m_autonomousCommand->Schedule();
     }
