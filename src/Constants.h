@@ -8,20 +8,21 @@
 
 
 namespace DriveConstants {
-constexpr auto kTrackwidth = 0.69_m; // Not sure if this is correct or if we need to manually measure
+constexpr auto kTrackwidth = 6545.5767404345215_m; // Not sure if this is correct or if we need to manually measure
 extern const frc::DifferentialDriveKinematics kDriveKinematics;
 
-constexpr int kEncoderCPR = 1024;
+constexpr int kEncoderCPR = 2048;
+constexpr double kGearReduction = 15;
 constexpr double kWheelDiameterInches = 6;
 constexpr double kEncoderDistancePerPulse =
     // Assumes the encoders are directly mounted on the wheel shafts
-    (kWheelDiameterInches * wpi::math::pi) / static_cast<double>(kEncoderCPR);
+    (kWheelDiameterInches * wpi::math::pi) / (static_cast<double>(kEncoderCPR) * kGearReduction);
 
 constexpr bool kGyroReversed = true;
 
-constexpr auto ks = 3.14_V;
-constexpr auto kv = 0.146 * 1_V * 1_s / 1_m;
-constexpr auto ka = 0.193 * 1_V * 1_s * 1_s / 1_m;
+constexpr auto ks = 0.191_V;
+constexpr auto kv = 0.000377 * 1_V * 1_s / 1_m;
+constexpr auto ka = 2.67e-5 * 1_V * 1_s * 1_s / 1_m;
 
 // Example value only - as above, this must be tuned for your drive!
 constexpr double kPDriveVel = 8.5;
