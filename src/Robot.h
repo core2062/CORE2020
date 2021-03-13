@@ -14,9 +14,9 @@
 #include "LauncherSubsystem.h"
 #include "TurretSubsystem.h"
 #include "Config.h"
-#include "TestRoutine.h"
-#include "DriveRoutine.h"
-#include "ThreeBallRoutine.h"
+#include "Auto/TestRoutine.h"
+#include "Auto/DriveRoutine.h"
+#include "Auto/ThreeBallRoutine.h"
 
 using namespace CORE;
 using namespace std;
